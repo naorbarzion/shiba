@@ -1,0 +1,706 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>הפתרון - פרויקט שיבא</title>
+    <link href="https://fonts.googleapis.com/css2?family=Rubik:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <link rel="stylesheet" href="styles.css">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        .modal-backdrop {
+            display: none;
+            position: fixed;
+            inset: 0;
+            background: rgba(0, 0, 0, 0.7);
+            backdrop-filter: blur(5px);
+            z-index: 1000;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        .modal-backdrop.show {
+            opacity: 1;
+        }
+
+        .modal-content {
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%) scale(0.9);
+            background: white;
+            padding: 2rem;
+            border-radius: 1rem;
+            max-width: 90vw;
+            max-height: 90vh;
+            overflow-y: auto;
+            z-index: 1001;
+            opacity: 0;
+            transition: all 0.3s ease;
+        }
+
+        .modal-content.show {
+            opacity: 1;
+            transform: translate(-50%, -50%) scale(1);
+        }
+
+        .modal-close {
+            position: absolute;
+            top: 1rem;
+            left: 1rem;
+            background: rgba(0, 0, 0, 0.1);
+            border-radius: 50%;
+            width: 2.5rem;
+            height: 2.5rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .modal-close:hover {
+            background: rgba(0, 0, 0, 0.2);
+            transform: rotate(90deg);
+        }
+
+        .image-modal img {
+            max-width: 95vw;
+            max-height: 95vh;
+            object-fit: contain;
+            border-radius: 8px;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+        }
+
+        .image-modal .modal-content {
+            background: transparent;
+            padding: 0;
+        }
+
+        .image-modal .modal-close {
+            position: fixed;
+            top: 1rem;
+            left: 1rem;
+            background: rgba(255, 255, 255, 0.9);
+            color: #1a202c;
+            z-index: 1002;
+        }
+
+        .image-modal #imageTitle {
+            position: fixed;
+            top: 1rem;
+            right: 1rem;
+            background: rgba(255, 255, 255, 0.9);
+            padding: 0.5rem 1rem;
+            border-radius: 0.5rem;
+            color: #1a202c;
+            z-index: 1002;
+        }
+
+        .pdf-modal {
+            width: 95vw;
+            max-width: 1400px;
+        }
+
+        .pdf-modal .modal-content {
+            width: 95vw;
+            max-width: 1400px;
+            height: 95vh;
+            padding: 2rem;
+        }
+
+        .pdf-modal iframe {
+            width: 100%;
+            height: calc(95vh - 100px);
+            border: none;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+        }
+
+        .modal-title {
+            font-size: 1.5rem;
+            font-weight: 600;
+            color: #1a202c;
+            text-align: center;
+            margin-bottom: 1rem;
+            padding-bottom: 1rem;
+            border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+        }
+    </style>
+</head>
+<body class="bg-gray-50">
+    <!-- Top Logos Bar -->
+    <div class="top-logos fixed top-0 right-72 left-0 z-50 flex items-center px-8">
+        <div class="flex items-center w-1/4">
+            <div class="logo-container">
+                <img src="https://i.ibb.co/sd2bJRjs/Whats-App-Image-2025-02-23-at-10-20-26-2658254a-removebg-preview.png" alt="שיבא" class="h-20">
+            </div>
+            <div class="logo-container">
+                <img src="https://i.ibb.co/LhzWCKJS/Whats-App-Image-2025-02-23-at-10-23-09-c6154921-removebg-preview.png" alt="אג קולוענוית" class="h-20">
+            </div>
+        </div>
+        <div class="flex-1 flex justify-center">
+            <h2 class="text-3xl font-bold text-[#2AAFAF]">אבטחה וניהול כלים תפעוליים במרחב הפתוח - מבית טרייסר טכנולוגיות</h2>
+        </div>
+        <div class="w-1/4"></div>
+    </div>
+
+    <div class="flex min-h-screen">
+        <!-- Sidebar -->
+        <aside class="sidebar w-72 fixed right-0 h-full text-white p-6 flex flex-col">
+            <!-- לוגו טרייסר -->
+            <div class="mb-12 flex flex-col justify-center items-center bg-opacity-20 rounded-xl p-4">
+                <img src="https://tracer.co.il/wp-content/uploads/elementor/thumbs/Logo-H-white-q0h162vgg50mjnjyzkgpllvtrsmnuit840vji6es96.png" alt="טרייסר" class="tracer-logo mb-4">
+            </div>
+            
+            <!-- תפריט ניווט -->
+            <nav class="space-y-4 mt-8">
+                <a href="index.html" class="nav-link flex items-center p-3 text-sm">
+                    <i class="fas fa-home ml-3 w-5 h-5 flex items-center justify-center"></i>
+                    סקירה כללית
+                </a>
+                <a href="problem.html" class="nav-link flex items-center p-3 text-sm">
+                    <i class="fas fa-exclamation-triangle ml-3 w-5 h-5 flex items-center justify-center"></i>
+                    בעיה
+                </a>
+                <a href="solution.html" class="nav-link active flex items-center p-3 text-sm">
+                    <i class="fas fa-check-circle ml-3 w-5 h-5 flex items-center justify-center"></i>
+                    פתרון
+                </a>
+                <a href="abouttracer.html" class="nav-link flex items-center p-3 text-sm">
+                    <i class="fas fa-info-circle ml-3 w-5 h-5 flex items-center justify-center"></i>
+                    קצת על טרייסר
+                </a>
+            </nav>
+        </aside>
+
+        <!-- תוכן ראשי -->
+        <main class="mr-72 w-full">
+            <div class="min-h-screen pt-32 px-8">
+                <div class="max-w-6xl mx-auto">
+                    <!-- כותרת ראשית -->
+                    <div class="text-center mb-8">
+                        <div class="flex items-center justify-center gap-4 mb-4">
+                            <div class="bg-blue-100 p-4 rounded-xl">
+                                <i class="fas fa-lightbulb text-2xl text-blue-600"></i>
+                            </div>
+                            <div>
+                                <h1 class="text-4xl font-bold text-gray-800">הפתרון המושלם</h1>
+                                <p class="text-xl text-gray-600 mt-2">טרייסר קונקט - מערכת חכמה לניהול ומעקב אחר כלים תפעוליים</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- תיאור הפתרון -->
+                    <div class="solution-card rounded-2xl p-8 mb-8">
+                        <div class="flex items-center gap-4 mb-6">
+                            <div class="bg-green-100 p-4 rounded-xl">
+                                <i class="fas fa-plug text-2xl text-green-600"></i>
+                            </div>
+                            <h2 class="text-2xl font-semibold">התקנה פשוטה, תוצאות מדהימות</h2>
+                        </div>
+                        <div class="flex items-center gap-4 mb-6">
+                            <p class="text-gray-700">התקנת טרייסר קונקט המתחבר למצבר של הכלי, בשילוב אפליקציית טרייסר למחשב ולטלפון נייד</p>
+                            <button onclick="openPdfModal()" class="tech-spec-btn">
+                                <i class="fas fa-file-pdf"></i>
+                                מפרט טכני
+                            </button>
+                        </div>
+
+                        <!-- מעקב בזמן אמת -->
+                        <div class="mb-8">
+                            <div class="flex items-center gap-4 mb-4">
+                                <div class="bg-purple-100 p-3 rounded-xl">
+                                    <i class="fas fa-satellite text-xl text-purple-600"></i>
+                                </div>
+                                <div>
+                                    <h3 class="text-xl font-semibold">מעקב GPS בזמן אמת</h3>
+                                    <p class="text-sm text-gray-500">תנועה רציפה עם עדכון מיקום כל 1-3 שניות</p>
+                                </div>
+                            </div>
+                            <p class="text-gray-600 mb-4">צפייה חיה ורציפה במיקום הכלים על גבי מפה אינטראקטיבית, המאפשרת מעקב שוטף אחר תנועת הכלים בזמן אמת</p>
+                            <div class="video-container">
+                                <video controls class="rounded-lg">
+                                    <source src="https://github.com/naorbarzion/shiba/raw/SHIBA/videopicture/real_time.mp4" type="video/mp4">
+                                    הדפדפן שלך לא תומך בתגית וידאו.
+                                </video>
+                            </div>
+                        </div>
+
+                        <!-- דיוק מיקום -->
+                        <div>
+                            <div class="flex items-center gap-4 mb-4">
+                                <div class="bg-indigo-100 p-3 rounded-xl">
+                                    <i class="fas fa-crosshairs text-xl text-indigo-600"></i>
+                                </div>
+                                <div>
+                                    <h3 class="text-xl font-semibold">דיוק מיקום מירבי</h3>
+                                    <p class="text-sm text-gray-500">רמת דיוק של 1-3 מטרים</p>
+                                </div>
+                            </div>
+                            <div class="image-gallery">
+                                <img src="https://github.com/naorbarzion/shiba/raw/SHIBA/videopicture/acc1.PNG" alt="דיוק מיקום - תצוגה 1" onclick="openImageModal(this.src, 'דיוק מיקום - תצוגה 1')">
+                                <img src="https://github.com/naorbarzion/shiba/raw/SHIBA/videopicture/acc.PNG" alt="דיוק מיקום - תצוגה 2" onclick="openImageModal(this.src, 'דיוק מיקום - תצוגה 2')">
+                                <img src="https://github.com/naorbarzion/shiba/raw/SHIBA/videopicture/acc2.PNG" alt="דיוק מיקום - תצוגה 3" onclick="openImageModal(this.src, 'דיוק מיקום - תצוגה 3')">
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- יכולות המערכת -->
+                    <div class="bg-gradient-to-br from-gray-50 to-blue-50 rounded-3xl p-12 mb-12">
+                        <div class="text-center mb-12">
+                            <div class="inline-flex items-center justify-center p-3 bg-blue-100 rounded-2xl mb-4">
+                                <i class="fas fa-cogs text-3xl text-blue-600"></i>
+                            </div>
+                            <h2 class="text-3xl font-bold text-gray-800">יכולות המערכת</h2>
+                            <p class="text-gray-600 mt-2">מערכת מתקדמת לניהול ומעקב אחר כלים תפעוליים</p>
+                        </div>
+
+                        <div class="grid grid-cols-1 gap-12">
+                            <!-- בקרה ודיווח -->
+                            <div class="bg-white rounded-2xl p-8 shadow-lg hover:shadow-xl transition-all duration-300">
+                                <div class="border-b-2 border-gray-100 pb-6 mb-8">
+                                    <div class="flex items-center gap-4">
+                                        <div class="bg-yellow-100 p-4 rounded-xl">
+                                            <i class="fas fa-chart-line text-2xl text-yellow-600"></i>
+                                        </div>
+                                        <h2 class="text-2xl font-semibold">בקרה ודיווח</h2>
+                                    </div>
+                                </div>
+                                <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                                    <!-- דוחות -->
+                                    <div class="bg-gradient-to-br from-indigo-50 to-blue-50 rounded-xl p-6 shadow-sm hover:shadow-md transition-all">
+                                        <div class="flex items-center gap-3 mb-4">
+                                            <div class="bg-indigo-100 p-3 rounded-xl">
+                                                <i class="fas fa-file-alt text-2xl text-indigo-600"></i>
+                                            </div>
+                                            <h3 class="text-lg font-medium">דוחות מותאמים אישית</h3>
+                                        </div>
+                                        <ul class="space-y-4">
+                                            <li class="flex items-center gap-3 bg-white/70 p-3 rounded-xl">
+                                                <i class="fas fa-route text-indigo-600"></i>
+                                                <span>דוחות קילומטראז'</span>
+                                            </li>
+                                            <li class="flex items-center gap-3 bg-white/70 p-3 rounded-xl">
+                                                <i class="fas fa-clock text-indigo-600"></i>
+                                                <span>שעות מנוע פעיל</span>
+                                            </li>
+                                            <li class="flex items-center gap-3 bg-white/70 p-3 rounded-xl">
+                                                <i class="fas fa-history text-indigo-600"></i>
+                                                <span>מסלולי נסיעה היסטוריים</span>
+                                            </li>
+                                            <li class="flex items-center gap-3 bg-white/70 p-3 rounded-xl">
+                                                <i class="fas fa-exclamation-triangle text-indigo-600"></i>
+                                                <span>דוחות חריגים</span>
+                                            </li>
+                                            <li class="flex items-center gap-3 bg-white/70 p-3 rounded-xl">
+                                                <i class="fas fa-tools text-indigo-600"></i>
+                                                <span>דוחות תחזוקה</span>
+                                                <ul class="text-sm text-gray-500 mr-6 mt-2">
+                                                    <li>• התראות טיפול 600 שעות מנוע / חצי שנה לכלים תפעוליים</li>
+                                                    <li>• התראות טסט, טיפול וביטוח לרכבים</li>
+                                                </ul>
+                                            </li>
+                                        </ul>
+                                    </div>
+
+                                    <!-- התראות תפעוליות -->
+                                    <div class="grid grid-cols-1 gap-6">
+                                        <div class="flex items-center gap-3 mb-4">
+                                            <div class="bg-orange-100 p-3 rounded-xl">
+                                                <i class="fas fa-bell text-2xl text-orange-600"></i>
+                                            </div>
+                                            <h3 class="text-lg font-medium">התראות תפעוליות</h3>
+                                        </div>
+
+                                        <!-- התראת טלפון - חירום -->
+                                        <div class="bg-gradient-to-br from-red-50 to-rose-50 rounded-xl p-6 shadow-sm hover:shadow-md transition-all">
+                                            <div class="flex items-center gap-3 mb-4">
+                                                <div class="bg-red-100 p-3 rounded-xl">
+                                                    <i class="fas fa-phone text-2xl text-red-600 animate-pulse"></i>
+                                                </div>
+                                                <h3 class="text-lg font-medium">שיחת טלפון לקצין הבטיחות</h3>
+                                            </div>
+                                            <div class="bg-white rounded-lg p-4 shadow-sm border-2 border-red-200">
+                                                <div class="flex items-center gap-2 mb-2">
+                                                    <i class="fas fa-exclamation-circle text-red-500"></i>
+                                                    <span class="font-bold">התראת חירום - יציאה מגבולות מתחם</span>
+                                                </div>
+                                                <p class="text-gray-700 mb-3">
+                                                    "שלום קצין הבטיחות, זוהתה יציאה לא מורשית של כלי מספר 105 מהמתחם המוגדר. נדרשת התערבות מיידית."
+                                                </p>
+                                                <div class="flex items-center gap-2">
+                                                    <i class="fas fa-map-marker-alt text-red-500"></i>
+                                                    <button onclick="openImageModal('https://github.com/naorbarzion/shiba/raw/SHIBA/videopicture/acc.PNG', 'מיקום הכלי בזמן אמת')" class="text-blue-600 hover:underline">
+                                                        צפייה במיקום הכלי בזמן אמת
+                                                    </button>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <!-- התראת WhatsApp - מצבר נמוך -->
+                                        <div class="bg-gradient-to-br from-green-50 to-emerald-50 rounded-xl p-6 shadow-sm hover:shadow-md transition-all">
+                                            <div class="flex items-center gap-3 mb-4">
+                                                <div class="bg-green-100 p-3 rounded-xl">
+                                                    <i class="fab fa-whatsapp text-2xl text-green-600"></i>
+                                                </div>
+                                                <h3 class="text-lg font-medium">התראת WhatsApp - קבוצת תפעול</h3>
+                                            </div>
+                                            <div class="bg-white rounded-lg p-4 shadow-sm">
+                                                <div class="flex items-center gap-2 mb-2">
+                                                    <i class="fas fa-car-battery text-yellow-500"></i>
+                                                    <span class="font-bold text-yellow-600">התראת מצבר - טיפול נדרש</span>
+                                                </div>
+                                                <p class="text-gray-700 mb-2">כלי מספר 108 - מתח מצבר נמוך</p>
+                                                <p class="text-gray-600 mb-2">קריאת מתח: 10.8V - נדרשת החלפת מצבר</p>
+                                                <div class="text-sm text-gray-500">
+                                                    <div class="flex items-center gap-2 mb-1">
+                                                        <i class="fas fa-clock"></i>
+                                                        <span>09:15</span>
+                                                    </div>
+                                                    <div class="flex items-center gap-2">
+                                                        <i class="fas fa-map-marker-alt"></i>
+                                                        <button onclick="openImageModal('https://github.com/naorbarzion/shiba/raw/SHIBA/videopicture/acc.PNG', 'מיקום הכלי בזמן אמת')" class="text-blue-600 hover:underline">
+                                                            צפייה במיקום הכלי בזמן אמת
+                                                        </button>
+                                                    </div>
+                                                    <div class="mt-2 text-sm font-medium text-gray-700">
+                                                        פעולה נדרשת: נדרש טכנאי חשמל למיקום הכלי לביצוע החלפת מצבר
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <!-- התראת טיפול רכב -->
+                                        <div class="bg-gradient-to-br from-blue-50 to-indigo-50 rounded-xl p-6 shadow-sm hover:shadow-md transition-all">
+                                            <div class="flex items-center gap-3 mb-4">
+                                                <div class="bg-blue-100 p-3 rounded-xl">
+                                                    <i class="fas fa-car text-2xl text-blue-600"></i>
+                                                </div>
+                                                <h3 class="text-lg font-medium">התראת טיפול רכב</h3>
+                                            </div>
+                                            <div class="bg-white rounded-lg p-4 shadow-sm">
+                                                <div class="flex items-center gap-2 mb-2">
+                                                    <i class="fas fa-tools text-blue-500"></i>
+                                                    <span class="font-bold text-blue-600">תזכורת טיפול 15,000 ק"מ</span>
+                                                </div>
+                                                <p class="text-gray-700 mb-2">רכב מספר 12-345-67</p>
+                                                <div class="text-sm text-gray-500">
+                                                    <div class="flex items-center gap-2 mb-2">
+                                                        <i class="fas fa-tachometer-alt"></i>
+                                                        <span>קילומטראז' נוכחי: 14,850 ק"מ</span>
+                                                    </div>
+                                                    <div class="flex items-center gap-2 mb-2">
+                                                        <i class="fas fa-road"></i>
+                                                        <span>טיפול נדרש בעוד: 150 ק"מ</span>
+                                                    </div>
+                                                    <div class="flex items-center gap-2">
+                                                        <i class="fas fa-calendar"></i>
+                                                        <span>תאריך יעד: 01/04/2024</span>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <!-- התראת טיפול כלי תפעולי -->
+                                        <div class="bg-gradient-to-br from-purple-50 to-pink-50 rounded-xl p-6 shadow-sm hover:shadow-md transition-all">
+                                            <div class="flex items-center gap-3 mb-4">
+                                                <div class="bg-purple-100 p-3 rounded-xl">
+                                                    <i class="fas fa-truck text-2xl text-purple-600"></i>
+                                                </div>
+                                                <h3 class="text-lg font-medium">התראת טיפול תקופתי</h3>
+                                            </div>
+                                            <div class="bg-white rounded-lg p-4 shadow-sm">
+                                                <div class="flex items-center gap-2 mb-2">
+                                                    <i class="fas fa-clock text-purple-500"></i>
+                                                    <span class="font-bold text-purple-600">טיפול 600 שעות מנוע</span>
+                                                </div>
+                                                <p class="text-gray-700 mb-2">כלי מספר 205 - נדרש טיפול תקופתי בעוד 20 שעות מנוע</p>
+                                                <div class="text-sm text-gray-500">
+                                                    <div class="flex items-center gap-2">
+                                                        <i class="fas fa-tachometer-alt"></i>
+                                                        <span>שעות מנוע נוכחי: 580</span>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- הערה על אפשרויות שליחת ההתראות -->
+                            <div class="bg-gradient-to-br from-gray-50 to-blue-50 rounded-2xl p-6 mt-6 shadow-lg">
+                                <div class="flex items-center gap-4 mb-4">
+                                    <div class="bg-blue-100 p-3 rounded-xl">
+                                        <i class="fas fa-info-circle text-2xl text-blue-600"></i>
+                                    </div>
+                                    <h3 class="text-xl font-semibold">אפשרויות שליחת התראות</h3>
+                                </div>
+                                <div class="grid grid-cols-5 gap-4">
+                                    <div class="bg-white rounded-xl p-4 shadow-sm hover:shadow-md transition-all">
+                                        <div class="flex items-center gap-3">
+                                            <div class="bg-green-100 p-2 rounded-lg">
+                                                <i class="fab fa-whatsapp text-xl text-green-600"></i>
+                                            </div>
+                                            <span class="font-medium">WhatsApp</span>
+                                        </div>
+                                    </div>
+                                    <div class="bg-white rounded-xl p-4 shadow-sm hover:shadow-md transition-all">
+                                        <div class="flex items-center gap-3">
+                                            <div class="bg-purple-100 p-2 rounded-lg">
+                                                <i class="fas fa-mobile-alt text-xl text-purple-600"></i>
+                                            </div>
+                                            <span class="font-medium">אפליקציה</span>
+                                        </div>
+                                    </div>
+                                    <div class="bg-white rounded-xl p-4 shadow-sm hover:shadow-md transition-all">
+                                        <div class="flex items-center gap-3">
+                                            <div class="bg-blue-100 p-2 rounded-lg">
+                                                <i class="fas fa-envelope text-xl text-blue-600"></i>
+                                            </div>
+                                            <span class="font-medium">מייל</span>
+                                        </div>
+                                    </div>
+                                    <div class="bg-white rounded-xl p-4 shadow-sm hover:shadow-md transition-all">
+                                        <div class="flex items-center gap-3">
+                                            <div class="bg-red-100 p-2 rounded-lg">
+                                                <i class="fas fa-phone text-xl text-red-600"></i>
+                                            </div>
+                                            <span class="font-medium">שיחת חירום</span>
+                                        </div>
+                                    </div>
+                                    <div class="bg-white rounded-xl p-4 shadow-sm hover:shadow-md transition-all">
+                                        <div class="flex items-center gap-3">
+                                            <div class="bg-indigo-100 p-2 rounded-lg">
+                                                <i class="fas fa-desktop text-xl text-indigo-600"></i>
+                                            </div>
+                                            <span class="font-medium">ממשק מחשב</span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <p class="text-gray-600 mt-4 text-center">כל ההתראות ניתנות להתאמה אישית ויכולות להישלח במקביל בכל הערוצים הנדרשים</p>
+                            </div>
+
+                            <!-- גידור גיאוגרפי -->
+                            <div class="bg-white rounded-2xl p-8 shadow-lg hover:shadow-xl transition-all duration-300">
+                                <div class="border-b-2 border-gray-100 pb-6 mb-8">
+                                    <div class="flex items-center gap-4 mb-6">
+                                        <div class="bg-blue-100 p-4 rounded-xl">
+                                            <i class="fas fa-draw-polygon text-2xl text-blue-600"></i>
+                                        </div>
+                                        <h2 class="text-2xl font-semibold">גידור גיאוגרפי מתקדם</h2>
+                                    </div>
+                                </div>
+                                
+                                <div class="space-y-8">
+                                    <!-- תצוגת מפה -->
+                                    <div class="w-full">
+                                        <div class="relative rounded-2xl overflow-hidden shadow-lg hover:shadow-xl transition-all duration-300">
+                                            <img src="https://github.com/naorbarzion/shiba/raw/SHIBA/videopicture/geofences.PNG" 
+                                                 alt="מפת הגידור הגיאוגרפי של המערכת" 
+                                                 class="w-full h-[400px] cursor-pointer object-cover"
+                                                 onclick="openImageModal(this.src, 'מפת הגידור הגיאוגרפי של המערכת')"
+                                            >
+                                            <div class="absolute bottom-0 right-0 left-0 bg-black bg-opacity-50 backdrop-blur-sm text-white p-3 text-sm">
+                                                לחץ על התמונה להגדלה מלאה
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <!-- מידע ויכולות בשתי שורות -->
+                                    <div class="grid grid-cols-3 gap-6">
+                                        <!-- יכולות הגידור -->
+                                        <div class="bg-gradient-to-br from-blue-50 to-indigo-50 rounded-2xl p-6 shadow-lg hover:shadow-xl transition-all duration-300">
+                                            <div class="flex items-center gap-3 mb-4">
+                                                <div class="bg-blue-100 p-3 rounded-xl">
+                                                    <i class="fas fa-shield-alt text-xl text-blue-600"></i>
+                                                </div>
+                                                <h4 class="text-lg font-semibold text-blue-800">יכולות הגידור</h4>
+                                            </div>
+                                            <ul class="space-y-4">
+                                                <li class="flex items-center gap-3 bg-white/50 p-3 rounded-xl">
+                                                    <i class="fas fa-check-circle text-green-600 text-lg"></i>
+                                                    <span>הגדרת גבולות גזרה מדויקים</span>
+                                                </li>
+                                                <li class="flex items-center gap-3 bg-white/50 p-3 rounded-xl">
+                                                    <i class="fas fa-check-circle text-green-600 text-lg"></i>
+                                                    <span>התראות בזמן אמת על חריגה מגבולות</span>
+                                                </li>
+                                                <li class="flex items-center gap-3 bg-white/50 p-3 rounded-xl">
+                                                    <i class="fas fa-check-circle text-green-600 text-lg"></i>
+                                                    <span>מעקב אחר כניסה ויציאה מאזורים מוגדרים</span>
+                                                </li>
+                                            </ul>
+                                        </div>
+
+                                        <!-- מערכת התראות -->
+                                        <div class="bg-gradient-to-br from-green-50 to-emerald-50 rounded-2xl p-6 shadow-lg hover:shadow-xl transition-all duration-300">
+                                            <div class="flex items-center gap-3 mb-4">
+                                                <div class="bg-green-100 p-3 rounded-xl">
+                                                    <i class="fas fa-bell text-xl text-green-600"></i>
+                                                </div>
+                                                <h4 class="text-lg font-semibold text-green-800">מערכת התראות</h4>
+                                            </div>
+                                            <ul class="space-y-4">
+                                                <li class="flex items-center gap-3 bg-white/50 p-3 rounded-xl">
+                                                    <i class="fas fa-desktop text-emerald-600 text-lg"></i>
+                                                    <span>ממשק בקרה במחשב לאנשי הביטחון</span>
+                                                </li>
+                                                <li class="flex items-center gap-3 bg-white/50 p-3 rounded-xl">
+                                                    <i class="fab fa-whatsapp text-emerald-600 text-lg"></i>
+                                                    <span>קבוצת WhatsApp ייעודית לקב"טים</span>
+                                                </li>
+                                                <li class="flex items-center gap-3 bg-white/50 p-3 rounded-xl">
+                                                    <i class="fas fa-phone text-emerald-600 text-lg"></i>
+                                                    <span>שיחת טלפון במקרי חירום</span>
+                                                </li>
+                                            </ul>
+                                        </div>
+
+                                        <!-- אזורים מוגדרים -->
+                                        <div class="bg-gradient-to-br from-purple-50 to-pink-50 rounded-2xl p-6 shadow-lg hover:shadow-xl transition-all duration-300">
+                                            <div class="flex items-center gap-3 mb-4">
+                                                <div class="bg-purple-100 p-3 rounded-xl">
+                                                    <i class="fas fa-map-marker-alt text-xl text-purple-600"></i>
+                                                </div>
+                                                <h4 class="text-lg font-semibold text-purple-800">מקרא אזורים</h4>
+                                            </div>
+                                            <div class="grid gap-4">
+                                                <div class="flex items-center gap-3 bg-white/50 p-3 rounded-xl">
+                                                    <div class="w-5 h-5 rounded-full bg-red-500 shadow-lg shadow-red-200"></div>
+                                                    <span class="text-gray-700 font-medium">גבולות גזרה</span>
+                                                </div>
+                                                <div class="flex items-center gap-3 bg-white/50 p-3 rounded-xl">
+                                                    <div class="w-5 h-5 rounded-full bg-blue-500 shadow-lg shadow-blue-200"></div>
+                                                    <span class="text-gray-700 font-medium">נקודות עניין</span>
+                                                </div>
+                                                <div class="flex items-center gap-3 bg-white/50 p-3 rounded-xl">
+                                                    <div class="w-5 h-5 rounded-full bg-orange-500 shadow-lg shadow-orange-200"></div>
+                                                    <span class="text-gray-700 font-medium">אזורי חניה</span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- תיחום מחלקות -->
+                            <div class="bg-white rounded-2xl p-8 shadow-lg hover:shadow-xl transition-all duration-300">
+                                <div class="border-b-2 border-gray-100 pb-6 mb-8">
+                                    <div class="flex items-center gap-4">
+                                        <div class="bg-purple-100 p-4 rounded-xl">
+                                            <i class="fas fa-hospital text-2xl text-purple-600"></i>
+                                        </div>
+                                        <h2 class="text-2xl font-semibold">תיחום מחלקות בית החולים</h2>
+                                    </div>
+                                </div>
+                                <div class="grid grid-cols-2 md:grid-cols-4 gap-6">
+                                    <div class="bg-blue-50 rounded-lg p-6 flex flex-col items-center gap-3 shadow-sm hover:shadow-md transition-all">
+                                        <i class="fas fa-ambulance text-3xl text-blue-600"></i>
+                                        <span class="font-medium text-center">מחלקת מיון</span>
+                                    </div>
+                                    <div class="bg-pink-50 rounded-lg p-6 flex flex-col items-center gap-3 shadow-sm hover:shadow-md transition-all">
+                                        <i class="fas fa-baby text-3xl text-pink-600"></i>
+                                        <span class="font-medium text-center">מחלקת יולדות</span>
+                                    </div>
+                                    <div class="bg-yellow-50 rounded-lg p-6 flex flex-col items-center gap-3 shadow-sm hover:shadow-md transition-all">
+                                        <i class="fas fa-radiation text-3xl text-yellow-600"></i>
+                                        <span class="font-medium text-center">מכון אונקולוגי</span>
+                                    </div>
+                                    <div class="bg-green-50 rounded-lg p-6 flex flex-col items-center gap-3 shadow-sm hover:shadow-md transition-all">
+                                        <i class="fas fa-plus-square text-3xl text-green-600"></i>
+                                        <span class="font-medium text-center">מחלקות נוספות</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <!-- מודל תמונה -->
+    <div id="imageModal" class="modal-backdrop">
+        <div class="modal-content image-modal">
+            <div class="modal-close" onclick="closeModal('imageModal')">
+                <i class="fas fa-times"></i>
+            </div>
+            <h3 id="imageTitle" class="text-xl font-semibold mb-4 text-center"></h3>
+            <img id="modalImage" src="" alt="">
+        </div>
+    </div>
+
+    <!-- מודל PDF -->
+    <div id="pdfModal" class="modal-backdrop">
+        <div class="modal-content pdf-modal">
+            <div class="modal-close" onclick="closeModal('pdfModal')">
+                <i class="fas fa-times"></i>
+            </div>
+            <div class="modal-title">מפרט טכני - טרייסר קונקט</div>
+            <iframe src="https://drive.google.com/file/d/1i1hW_2eXIdBCBY8c8L25I8Q5I7nyLzhR/preview" allow="autoplay"></iframe>
+        </div>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const mainContent = document.querySelector('main');
+            mainContent.classList.add('page-transition');
+            requestAnimationFrame(() => {
+                mainContent.classList.add('visible');
+            });
+        });
+
+        function openModal(modalId) {
+            const modal = document.getElementById(modalId);
+            modal.style.display = 'block';
+            setTimeout(() => {
+                modal.classList.add('show');
+                modal.querySelector('.modal-content').classList.add('show');
+            }, 10);
+        }
+
+        function closeModal(modalId) {
+            const modal = document.getElementById(modalId);
+            modal.classList.remove('show');
+            modal.querySelector('.modal-content').classList.remove('show');
+            setTimeout(() => {
+                modal.style.display = 'none';
+            }, 300);
+        }
+
+        function openImageModal(src, title) {
+            const modal = document.getElementById('imageModal');
+            const modalImage = document.getElementById('modalImage');
+            const imageTitle = document.getElementById('imageTitle');
+            modalImage.src = src;
+            imageTitle.textContent = title;
+            openModal('imageModal');
+        }
+
+        function openPdfModal() {
+            openModal('pdfModal');
+        }
+
+        // סגירת מודל בלחיצה מחוץ לתוכן
+        document.querySelectorAll('.modal-backdrop').forEach(modal => {
+            modal.addEventListener('click', (e) => {
+                if (e.target === modal) {
+                    closeModal(modal.id);
+                }
+            });
+        });
+
+        // סגירת מודל בלחיצה על ESC
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape') {
+                document.querySelectorAll('.modal-backdrop').forEach(modal => {
+                    if (modal.style.display === 'block') {
+                        closeModal(modal.id);
+                    }
+                });
+            }
+        });
+    </script>
+</body>
+</html> 

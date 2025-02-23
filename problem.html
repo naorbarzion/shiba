@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>הבעיה - פרויקט שיבא</title>
+    <link href="https://fonts.googleapis.com/css2?family=Rubik:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <link rel="stylesheet" href="styles.css">
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-gray-50">
+    <!-- Top Logos Bar -->
+    <div class="top-logos fixed top-0 right-72 left-0 z-50 flex items-center px-8">
+        <div class="flex items-center w-1/4">
+            <div class="logo-container">
+                <img src="https://i.ibb.co/sd2bJRjs/Whats-App-Image-2025-02-23-at-10-20-26-2658254a-removebg-preview.png" alt="שיבא" class="h-20">
+            </div>
+            <div class="logo-container">
+                <img src="https://i.ibb.co/LhzWCKJS/Whats-App-Image-2025-02-23-at-10-23-09-c6154921-removebg-preview.png" alt="אג קולוענוית" class="h-20">
+            </div>
+        </div>
+        <div class="flex-1 flex justify-center">
+            <h2 class="text-3xl font-bold text-[#2AAFAF]">אבטחה וניהול כלים תפעוליים במרחב הפתוח - מבית טרייסר טכנולוגיות</h2>
+        </div>
+        <div class="w-1/4"></div>
+    </div>
+
+    <div class="flex min-h-screen">
+        <!-- Sidebar -->
+        <aside class="sidebar w-72 fixed right-0 h-full text-white p-6 flex flex-col">
+            <!-- לוגו טרייסר -->
+            <div class="mb-12 flex flex-col justify-center items-center bg-opacity-20 rounded-xl p-4">
+                <img src="https://tracer.co.il/wp-content/uploads/elementor/thumbs/Logo-H-white-q0h162vgg50mjnjyzkgpllvtrsmnuit840vji6es96.png" alt="טרייסר" class="tracer-logo mb-4">
+            </div>
+            
+            <!-- תפריט ניווט -->
+            <nav class="space-y-4 mt-8">
+                <a href="index.html" class="nav-link flex items-center p-3 text-sm">
+                    <i class="fas fa-home ml-3 w-5 h-5 flex items-center justify-center"></i>
+                    סקירה כללית
+                </a>
+                <a href="problem.html" class="nav-link active flex items-center p-3 text-sm">
+                    <i class="fas fa-exclamation-triangle ml-3 w-5 h-5 flex items-center justify-center"></i>
+                    בעיה
+                </a>
+                <a href="solution.html" class="nav-link flex items-center p-3 text-sm">
+                    <i class="fas fa-check-circle ml-3 w-5 h-5 flex items-center justify-center"></i>
+                    פתרון
+                </a>
+                <a href="abouttracer.html" class="nav-link flex items-center p-3 text-sm">
+                    <i class="fas fa-info-circle ml-3 w-5 h-5 flex items-center justify-center"></i>
+                    קצת על טרייסר
+                </a>
+            </nav>
+        </aside>
+
+        <!-- תוכן ראשי -->
+        <main class="mr-72 w-full">
+            <div class="min-h-screen pt-32 px-8">
+                <div class="max-w-6xl mx-auto">
+                    <!-- כותרת ראשית -->
+                    <div class="mb-12">
+                        <div class="flex items-center gap-4 mb-6">
+                            <div class="bg-red-100 p-4 rounded-xl">
+                                <i class="fas fa-exclamation-circle text-2xl text-red-600"></i>
+                            </div>
+                            <div>
+                                <h1 class="text-4xl font-bold text-gray-800">הבעיה המרכזית</h1>
+                                <p class="text-xl text-gray-600 mt-2">חוסר שליטה ובקרה על כלים תפעוליים במתחם הפתוח</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- כרטיסי בעיות -->
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-8 mb-16">
+                        <!-- בעיה 1 -->
+                        <div class="problem-card rounded-2xl p-6">
+                            <div class="flex items-center gap-4 mb-4">
+                                <div class="bg-red-100 p-3 rounded-xl">
+                                    <i class="fas fa-door-open text-2xl text-red-600"></i>
+                                </div>
+                                <h3 class="text-xl font-semibold">הסרת הגדר הפיזית</h3>
+                            </div>
+                            <p class="text-gray-600">במסגרת פרויקט "עיר הבריאות" מאפשרת יציאה של כלים מהמתחם ללא כל בקרה וללא מעבר אצל השומר</p>
+                        </div>
+
+                        <!-- בעיה 2 -->
+                        <div class="problem-card rounded-2xl p-6">
+                            <div class="flex items-center gap-4 mb-4">
+                                <div class="bg-orange-100 p-3 rounded-xl">
+                                    <i class="fas fa-search-location text-2xl text-orange-600"></i>
+                                </div>
+                                <h3 class="text-xl font-semibold">חוסר יכולת מעקב</h3>
+                            </div>
+                            <p class="text-gray-600">אין אפשרות לעקוב בזמן אמת אחר מיקום הכלים במתחם</p>
+                        </div>
+
+                        <!-- בעיה 3 -->
+                        <div class="problem-card rounded-2xl p-6">
+                            <div class="flex items-center gap-4 mb-4">
+                                <div class="bg-yellow-100 p-3 rounded-xl">
+                                    <i class="fas fa-exclamation text-2xl text-yellow-600"></i>
+                                </div>
+                                <h3 class="text-xl font-semibold">כאוס תפעולי</h3>
+                            </div>
+                            <p class="text-gray-600">ריבוי כלים תפעוליים ללא מערכת ניהול מרכזית</p>
+                        </div>
+
+                        <!-- בעיה 4 -->
+                        <div class="problem-card rounded-2xl p-6">
+                            <div class="flex items-center gap-4 mb-4">
+                                <div class="bg-purple-100 p-3 rounded-xl">
+                                    <i class="fas fa-chart-bar text-2xl text-purple-600"></i>
+                                </div>
+                                <h3 class="text-xl font-semibold">העדר דוחות</h3>
+                            </div>
+                            <p class="text-gray-600">אין יכולת הפקת דוחות וסטטיסטיקות על פעילות הכלים לאורך זמן</p>
+                        </div>
+
+                        <!-- בעיה 5 -->
+                        <div class="problem-card rounded-2xl p-6">
+                            <div class="flex items-center gap-4 mb-4">
+                                <div class="bg-blue-100 p-3 rounded-xl">
+                                    <i class="fas fa-shield-alt text-2xl text-blue-600"></i>
+                                </div>
+                                <h3 class="text-xl font-semibold">סיכון בטיחותי</h3>
+                            </div>
+                            <p class="text-gray-600">אין התראות על אירועים חריגים בזמן אמת</p>
+                        </div>
+
+                        <!-- בעיה 6 -->
+                        <div class="problem-card rounded-2xl p-6">
+                            <div class="flex items-center gap-4 mb-4">
+                                <div class="bg-red-100 p-3 rounded-xl">
+                                    <i class="fas fa-lock-open text-2xl text-red-600"></i>
+                                </div>
+                                <h3 class="text-xl font-semibold">סיכון גניבה</h3>
+                            </div>
+                            <p class="text-gray-600">העדר מעקב מאפשר הוצאת כלים מהמתחם ללא ידיעת קצין הבטיחות או מרכז הבקרה</p>
+                        </div>
+                    </div>
+
+                    <!-- סוגי כלים -->
+                    <div class="mb-12">
+                        <div class="flex items-center gap-4 mb-8">
+                            <div class="bg-indigo-100 p-4 rounded-xl">
+                                <i class="fas fa-truck text-2xl text-indigo-600"></i>
+                            </div>
+                            <h2 class="text-2xl font-bold text-gray-800">המערכת מתאימה ל:</h2>
+                        </div>
+                        <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-6">
+                            <!-- קלנועיות -->
+                            <div class="vehicle-type bg-white rounded-xl p-4 text-center shadow-lg">
+                                <div class="bg-green-100 p-3 rounded-xl mx-auto mb-3 w-16 h-16 flex items-center justify-center">
+                                    <i class="fas fa-shuttle-van text-2xl text-green-600"></i>
+                                </div>
+                                <h3 class="font-medium">קלנועיות</h3>
+                            </div>
+
+                            <!-- גולפיות -->
+                            <div class="vehicle-type bg-white rounded-xl p-4 text-center shadow-lg">
+                                <div class="bg-blue-100 p-3 rounded-xl mx-auto mb-3 w-16 h-16 flex items-center justify-center">
+                                    <i class="fas fa-shuttle-van text-2xl text-blue-600"></i>
+                                </div>
+                                <h3 class="font-medium">גולפיות</h3>
+                            </div>
+
+                            <!-- גוררים -->
+                            <div class="vehicle-type bg-white rounded-xl p-4 text-center shadow-lg">
+                                <div class="bg-purple-100 p-3 rounded-xl mx-auto mb-3 w-16 h-16 flex items-center justify-center">
+                                    <i class="fas fa-truck text-2xl text-purple-600"></i>
+                                </div>
+                                <h3 class="font-medium">גוררים</h3>
+                            </div>
+
+                            <!-- כלי צמ"ה -->
+                            <div class="vehicle-type bg-white rounded-xl p-4 text-center shadow-lg">
+                                <div class="bg-yellow-100 p-3 rounded-xl mx-auto mb-3 w-16 h-16 flex items-center justify-center">
+                                    <i class="fas fa-truck-monster text-2xl text-yellow-600"></i>
+                                </div>
+                                <h3 class="font-medium">כלי צמ"ה</h3>
+                            </div>
+
+                            <!-- כלי רכב תפעוליים -->
+                            <div class="vehicle-type bg-white rounded-xl p-4 text-center shadow-lg">
+                                <div class="bg-indigo-100 p-3 rounded-xl mx-auto mb-3 w-16 h-16 flex items-center justify-center">
+                                    <i class="fas fa-truck-pickup text-2xl text-indigo-600"></i>
+                                </div>
+                                <h3 class="font-medium">כלי רכב תפעוליים</h3>
+                            </div>
+
+                            <!-- כלי מצבר -->
+                            <div class="vehicle-type bg-white rounded-xl p-4 text-center shadow-lg">
+                                <div class="bg-teal-100 p-3 rounded-xl mx-auto mb-3 w-16 h-16 flex items-center justify-center">
+                                    <i class="fas fa-car-battery text-2xl text-teal-600"></i>
+                                </div>
+                                <h3 class="font-medium">כל כלי שיש לו מצבר</h3>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const mainContent = document.querySelector('main');
+            mainContent.classList.add('page-transition');
+            requestAnimationFrame(() => {
+                mainContent.classList.add('visible');
+            });
+        });
+    </script>
+</body>
+</html> 
