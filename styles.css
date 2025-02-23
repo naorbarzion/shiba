@@ -1,3 +1,9 @@
+@media (max-width: 768px) {
+    body > *:not(.mobile-only-message) {
+        display: none !important;
+    }
+}
+
 * {
     font-family: 'Rubik', sans-serif;
 }

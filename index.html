@@ -10,6 +10,19 @@
     <script src="https://cdn.tailwindcss.com"></script>
 </head>
 <body class="bg-gray-50">
+    <!-- הודעת מובייל -->
+    <div class="mobile-only-message fixed inset-0 bg-gray-900 z-[100] items-center justify-center text-center p-8 hidden">
+        <div class="bg-white rounded-2xl p-8 max-w-md mx-auto">
+            <div class="flex justify-center mb-6">
+                <div class="bg-red-100 p-4 rounded-full">
+                    <i class="fas fa-desktop text-3xl text-red-600"></i>
+                </div>
+            </div>
+            <h2 class="text-2xl font-bold text-gray-800 mb-4">תצוגה זמינה ממחשב בלבד</h2>
+            <p class="text-gray-600">לצפייה בתוכן, אנא גשו לאתר ממחשב נייח או נייד</p>
+        </div>
+    </div>
+
     <!-- Top Logos Bar -->
     <div class="top-logos fixed top-0 right-72 left-0 z-50 flex items-center px-8">
         <div class="flex items-center w-1/4">
@@ -201,6 +214,22 @@
             requestAnimationFrame(() => {
                 mainContent.classList.add('visible');
             });
+
+            // בדיקת רוחב המסך והצגת ההודעה במובייל
+            function checkMobileAndShowMessage() {
+                const mobileMessage = document.querySelector('.mobile-only-message');
+                if (window.innerWidth <= 768) {
+                    mobileMessage.style.display = 'flex';
+                } else {
+                    mobileMessage.style.display = 'none';
+                }
+            }
+
+            // בדיקה ראשונית
+            checkMobileAndShowMessage();
+
+            // בדיקה בכל שינוי גודל מסך
+            window.addEventListener('resize', checkMobileAndShowMessage);
         });
     </script>
 </body>
