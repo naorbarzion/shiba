@@ -530,9 +530,123 @@
                 display: none;
             }
         }
+        
+        /* פופאפ למובייל */
+        .mobile-popup-overlay {
+            display: none;
+            position: fixed;
+            inset: 0;
+            background-color: rgba(0, 0, 0, 0.7);
+            backdrop-filter: blur(5px);
+            z-index: 2000;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+        
+        .mobile-popup-overlay.show {
+            opacity: 1;
+        }
+        
+        .mobile-popup {
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 90%;
+            max-width: 350px;
+            background: white;
+            border-radius: 16px;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+            padding: 1.5rem;
+            text-align: center;
+            z-index: 2001;
+            opacity: 0;
+            transform: translate(-50%, -40%);
+            transition: all 0.4s cubic-bezier(0.2, 0.9, 0.3, 1.1);
+        }
+        
+        .mobile-popup.show {
+            opacity: 1;
+            transform: translate(-50%, -50%);
+        }
+        
+        .mobile-popup-icon {
+            width: 64px;
+            height: 64px;
+            background-color: rgba(42, 175, 175, 0.1);
+            color: var(--primary-color);
+            margin: 0 auto 1rem;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2rem;
+        }
+        
+        .mobile-popup-title {
+            font-size: 1.25rem;
+            font-weight: 600;
+            color: #1a202c;
+            margin-bottom: 0.75rem;
+        }
+        
+        .mobile-popup-text {
+            font-size: 0.875rem;
+            color: #4a5568;
+            margin-bottom: 1.5rem;
+        }
+        
+        .mobile-popup-buttons {
+            display: flex;
+            gap: 1rem;
+        }
+        
+        .mobile-popup-button {
+            flex: 1;
+            padding: 0.75rem 1rem;
+            border-radius: 8px;
+            font-weight: 500;
+            font-size: 0.875rem;
+            transition: all 0.2s ease;
+            cursor: pointer;
+        }
+        
+        .mobile-popup-button-primary {
+            background-color: var(--primary-color);
+            color: white;
+            border: none;
+        }
+        
+        .mobile-popup-button-primary:hover {
+            background-color: #259595;
+        }
+        
+        .mobile-popup-button-secondary {
+            background-color: #f7fafc;
+            color: #4a5568;
+            border: 1px solid #e2e8f0;
+        }
+        
+        .mobile-popup-button-secondary:hover {
+            background-color: #edf2f7;
+        }
     </style>
 </head>
 <body>
+    <!-- פופאפ למובייל -->
+    <div class="mobile-popup-overlay" id="mobilePopup">
+        <div class="mobile-popup">
+            <div class="mobile-popup-icon">
+                <i class="fas fa-desktop"></i>
+            </div>
+            <div class="mobile-popup-title">מומלץ לצפות במחשב</div>
+            <div class="mobile-popup-text">האתר מותאם למובייל, אך לחוויה מיטבית מומלץ לצפות בו ממחשב נייח או נייד.</div>
+            <div class="mobile-popup-buttons">
+                <button class="mobile-popup-button mobile-popup-button-primary" id="continueMobile" style="width:100%">המשך במובייל</button>
+            </div>
+        </div>
+    </div>
+
     <!-- בר התקדמות -->
     <header class="progress-header">
         <div class="progress-container">
@@ -744,6 +858,67 @@
                 mainContent.style.opacity = '1';
                 mainContent.style.transform = 'translateY(0)';
             }, 100);
+
+            // זיהוי מכשיר מובייל והצגת פופאפ
+            function isMobileDevice() {
+                return (window.innerWidth <= 768) || 
+                       (navigator.userAgent.match(/Android/i) || 
+                        navigator.userAgent.match(/webOS/i) || 
+                        navigator.userAgent.match(/iPhone/i) || 
+                        navigator.userAgent.match(/iPad/i) || 
+                        navigator.userAgent.match(/iPod/i) || 
+                        navigator.userAgent.match(/BlackBerry/i) || 
+                        navigator.userAgent.match(/Windows Phone/i));
+            }
+            
+            // פתיחת פופאפ מובייל
+            function showMobilePopup() {
+                // מציג את הפופאפ תמיד, ללא בדיקת עוגייה
+                const popup = document.getElementById('mobilePopup');
+                const popupContent = popup.querySelector('.mobile-popup');
+                
+                popup.style.display = 'block';
+                setTimeout(() => {
+                    popup.classList.add('show');
+                    popupContent.classList.add('show');
+                }, 100);
+                
+                // הגדרת כפתור "המשך במובייל"
+                document.getElementById('continueMobile').addEventListener('click', () => {
+                    popup.classList.remove('show');
+                    popupContent.classList.remove('show');
+                    setTimeout(() => {
+                        popup.style.display = 'none';
+                    }, 300);
+                    
+                    // הוסרה שמירת העוגייה כדי שהפופאפ יוצג בכל פעם
+                });
+            }
+            
+            // פונקציה לשמירת עוגייה (לא בשימוש כעת, אך נשארת למקרה שנרצה להחזיר אותה)
+            function setCookie(name, value, days) {
+                const expires = new Date();
+                expires.setTime(expires.getTime() + (days * 24 * 60 * 60 * 1000));
+                document.cookie = name + '=' + value + ';expires=' + expires.toUTCString() + ';path=/';
+            }
+            
+            // פונקציה לקריאת עוגייה (לא בשימוש כעת, אך נשארת למקרה שנרצה להחזיר אותה)
+            function getCookie(name) {
+                const nameEQ = name + '=';
+                const ca = document.cookie.split(';');
+                for (let i = 0; i < ca.length; i++) {
+                    let c = ca[i];
+                    while (c.charAt(0) === ' ') c = c.substring(1, c.length);
+                    if (c.indexOf(nameEQ) === 0) return c.substring(nameEQ.length, c.length);
+                }
+                return null;
+            }
+            
+            // בדיקת מכשיר והצגת פופאפ אם זה מובייל
+            if (isMobileDevice()) {
+                // דחיית הצגת הפופאפ ב-1.5 שניות לטעינת הדף
+                setTimeout(showMobilePopup, 1500);
+            }
 
             // התנהגות חץ גלילה
             const scrollIndicator = document.getElementById('scrollIndicator');
