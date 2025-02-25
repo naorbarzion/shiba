@@ -346,6 +346,93 @@
                 flex-direction: column;
                 gap: 1.5rem;
             }
+            
+            /* שיפור מובייל לכפתורי ניווט - סטייל אולטרה-מודרן 2025 */
+            .nav-buttons {
+                flex-direction: column;
+                gap: 1rem;
+                align-items: center;
+                padding: 1.25rem;
+                margin-top: 2rem;
+                border-top: none;
+                position: relative;
+            }
+            
+            /* מרכוז האינדיקטור ועיצוב מינימליסטי */
+            .nav-buttons .flex.items-center.text-gray-400 {
+                margin: 0 0 1.5rem;
+                order: -1;
+                padding: 0.5rem 1rem;
+                background-color: #f8fafc;
+                border-radius: 30px;
+                box-shadow: 0 2px 10px rgba(0,0,0,0.03);
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                width: auto;
+            }
+            
+            /* עיצוב מודרני לאינדיקטור */
+            .nav-buttons .flex.items-center.text-gray-400 span {
+                font-size: 0.875rem;
+                font-weight: 500;
+                color: #64748b;
+            }
+            
+            /* פס התקדמות דק ומעוצב */
+            .nav-buttons .flex.items-center.text-gray-400 .w-24 {
+                width: 60px;
+                height: 3px;
+                margin: 0 0.5rem;
+                background-color: #e2e8f0;
+                border-radius: 10px;
+                overflow: hidden;
+            }
+            
+            /* עיצוב מינימליסטי לכפתורים - סגנון 2025 */
+            .nav-button {
+                width: auto;
+                max-width: none;
+                justify-content: center;
+                padding: 0.5rem 1rem;
+                font-size: 0.875rem;
+                font-weight: 500;
+                border-radius: 30px;
+                border-width: 1px;
+                background: transparent;
+                box-shadow: none;
+                position: relative;
+                overflow: hidden;
+                margin: 0.25rem 0;
+                transition: all 0.2s ease;
+            }
+            
+            /* אפקט מודרני בלחיצה */
+            .nav-button:active {
+                transform: scale(0.95);
+                background-color: rgba(42, 175, 175, 0.05);
+            }
+            
+            /* אייקון החץ */
+            .nav-button i {
+                font-size: 0.875rem;
+                transition: transform 0.2s ease;
+            }
+            
+            /* סידור חדש של הכפתורים בשורה */
+            .nav-buttons {
+                flex-direction: row;
+                justify-content: space-between;
+                flex-wrap: wrap;
+                padding: 1rem 0;
+            }
+            
+            /* מיקום האינדיקטור מעל הכפתורים */
+            .nav-buttons .flex.items-center.text-gray-400 {
+                width: 100%;
+                justify-content: center;
+                margin-bottom: 1rem;
+            }
         }
         
         .document-footer {
@@ -625,10 +712,15 @@
 
         <!-- כפתורי ניווט -->
         <div class="nav-buttons">
-            <div></div> <!-- כפתור השמאלי ריק בדף הראשון -->
+            <div class="flex items-center text-gray-400">
+                <span class="text-sm font-semibold">1 / 4</span>
+                <div class="w-24 h-1.5 bg-gray-200 rounded-full mx-2 overflow-hidden">
+                    <div class="bg-primary-color h-full w-1/4"></div>
+                </div>
+            </div>
             
             <a href="problem.html" class="nav-button">
-                2
+                לדף הבא
                 <i class="fas fa-arrow-left mr-2"></i>
             </a>
         </div>

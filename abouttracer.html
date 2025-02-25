@@ -186,6 +186,219 @@
                 display: block;
                 font-size: 14px;
             }
+            
+            /* ספציפי לדף אודות */
+            .specification-document {
+                padding: 1rem;
+            }
+            
+            .bg-white.rounded-2xl {
+                padding: 1rem !important;
+            }
+            
+            .prose.prose-lg.max-w-none p {
+                font-size: 15px !important;
+                margin-bottom: 1rem !important;
+            }
+            
+            .flex.items-center.gap-4.mb-6 {
+                gap: 0.6rem;
+                margin-bottom: 0.8rem;
+            }
+            
+            .bg-blue-100.p-4.rounded-xl, .bg-purple-100.p-4.rounded-xl, .bg-green-100.p-4.rounded-xl, .bg-indigo-100.p-4.rounded-xl, .bg-red-100.p-4.rounded-xl {
+                padding: 0.75rem;
+            }
+            
+            .icon-box {
+                width: 40px;
+                height: 40px;
+            }
+            
+            .document-footer {
+                margin-top: 2rem;
+            }
+            
+            .grid.grid-cols-1.md\\:grid-cols-2.gap-8 {
+                gap: 2rem;
+            }
+            
+            .flex.items-center.justify-between.mb-6 img {
+                height: 30px;
+            }
+            
+            /* התאמות נוספות לתמונות ולפרויקטים */
+            .relative.rounded-xl.overflow-hidden {
+                height: auto !important;
+            }
+            
+            .relative.rounded-xl.overflow-hidden img {
+                height: auto !important;
+                max-height: 200px;
+                width: 100%;
+            }
+            
+            /* התאמת הגדלים והמרווחים בתוך פרויקטים */
+            .bg-gradient-to-br.from-gray-50.to-blue-50.rounded-2xl.p-8.mb-8,
+            .bg-gradient-to-br.from-gray-50.to-red-50.rounded-2xl.p-8,
+            .bg-gradient-to-br.from-gray-50.to-purple-50.rounded-2xl.p-8 {
+                border-radius: 0.8rem;
+                padding: 1rem !important;
+                margin-bottom: 1.25rem;
+            }
+            
+            /* כותרות פרויקטים */
+            .flex.items-center.gap-4 h3.text-2xl {
+                font-size: 1.25rem !important;
+                line-height: 1.3;
+            }
+            
+            /* התאמת המודל תמונה */
+            #imageTitle {
+                font-size: 14px;
+                max-width: 70%;
+                overflow: hidden;
+                text-overflow: ellipsis;
+                white-space: nowrap;
+            }
+            
+            .modal-close {
+                width: 2rem;
+                height: 2rem;
+            }
+            
+            /* שיפור נראות החלק העליון של הפרויקטים */
+            .bg-white.rounded-2xl.p-8.shadow-lg {
+                padding: 1rem !important;
+            }
+        }
+        
+        @media (max-width: 350px) {
+            .specification-document {
+                padding: 0.75rem;
+            }
+            
+            h1.text-4xl {
+                font-size: 1.5rem !important;
+            }
+            
+            h2.text-3xl, h3.text-2xl {
+                font-size: 1.25rem !important;
+            }
+            
+            .prose p {
+                font-size: 14px !important;
+            }
+            
+            .nav-button {
+                padding: 0.5rem 1rem;
+                font-size: 0.9rem;
+            }
+            
+            /* פריסה משופרת למסכים קטנים במיוחד */
+            .title-bar {
+                padding: 1rem;
+            }
+            
+            .step-icon {
+                width: 30px;
+                height: 30px;
+            }
+            
+            .document-header {
+                margin-bottom: 1.5rem;
+            }
+            
+            .logo-container img {
+                height: 35px;
+            }
+            
+            .document-header div img {
+                height: 30px;
+            }
+            
+            /* שורה אחת של פרויקטים */
+            .grid.grid-cols-1.md\\:grid-cols-3.gap-8.mt-8 {
+                display: flex;
+                flex-direction: column;
+                gap: 1rem;
+            }
+            
+            /* התאמת המודלים והפופאפים */
+            .modal-close {
+                width: 1.75rem;
+                height: 1.75rem;
+                top: 0.5rem;
+                left: 0.5rem;
+            }
+            
+            #imageTitle {
+                font-size: 12px;
+                top: 0.5rem;
+                right: 0.5rem;
+                max-width: 60%;
+            }
+            
+            /* התאמת גודל התמונות ואלמנטים גרפיים */
+            .icon-box {
+                width: 35px;
+                height: 35px;
+            }
+            
+            .icon-box i {
+                font-size: 16px;
+            }
+            
+            /* כפתורי ניווט */
+            .nav-buttons {
+                margin-top: 2rem;
+                padding-top: 1rem;
+            }
+        }
+        
+        /* פתרון לבעיות overflow בתצוגת מובייל */
+        @media (max-width: 768px) {
+            /* מניעת גלישה אופקית */
+            html, body {
+                max-width: 100%;
+                overflow-x: hidden;
+            }
+            
+            /* התאמת מרווחים שליליים שעלולים ליצור גלישה אופקית */
+            .grid, .flex {
+                margin-left: 0 !important;
+                margin-right: 0 !important;
+            }
+            
+            /* שיפור טעינת תמונות במובייל */
+            img {
+                max-width: 100%;
+                height: auto;
+            }
+            
+            /* מניעת טקסט גדול מדי שגורם לשבירת לייאאוט */
+            h1, h2, h3, p {
+                word-break: break-word;
+            }
+            
+            /* התאמת גודל האייקונים בפרויקטים */
+            .bg-red-100.p-4.rounded-xl i,
+            .bg-blue-100.p-4.rounded-xl i,
+            .bg-purple-100.p-4.rounded-xl i,
+            .bg-green-100.p-4.rounded-xl i,
+            .bg-indigo-100.p-4.rounded-xl i {
+                font-size: 1.25rem;
+            }
+            
+            /* שיפור המרחק בין האלמנטים בפרויקטים */
+            .prose.prose-lg {
+                margin-top: 1rem;
+            }
+            
+            /* התאמת גודל התמונות במודל */
+            #modalImage {
+                max-height: 80vh;
+            }
         }
         
         .specification-document {
@@ -362,6 +575,160 @@
             .testimonial-grid {
                 grid-template-columns: 1fr;
             }
+            
+            /* שיפור אלמנטים בעמוד אודות */
+            .bg-gradient-to-br {
+                padding: 1.5rem !important;
+            }
+            
+            .prose p {
+                font-size: 16px !important;
+                line-height: 1.5 !important;
+            }
+            
+            h1.text-4xl {
+                font-size: 1.875rem !important;
+            }
+            
+            h2.text-3xl, h3.text-2xl {
+                font-size: 1.5rem !important;
+            }
+            
+            .logo-container img {
+                height: 40px;
+            }
+            
+            .grid.grid-cols-2.gap-4 {
+                grid-template-columns: 1fr !important; /* תמונות בשורה אחת במובייל */
+                margin-top: 1rem;
+            }
+            
+            .grid.grid-cols-2.gap-4 > div {
+                height: 200px;
+            }
+            
+            .grid.grid-cols-2.gap-4 img {
+                height: 100%;
+                object-fit: cover;
+            }
+            
+            .title-bar {
+                padding: 1.25rem;
+            }
+            
+            .flex.items-center.gap-4.mb-8 {
+                gap: 0.75rem;
+                margin-bottom: 1rem;
+            }
+            
+            .flex.items-center.justify-between.mb-6 {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 1rem;
+            }
+            
+            .bg-white.rounded-2xl {
+                padding: 1.25rem !important;
+            }
+            
+            .grid.grid-cols-1.md\\:grid-cols-3.gap-8 {
+                gap: 1rem;
+            }
+            
+            .mt-12 {
+                margin-top: 2rem;
+            }
+            
+            .mb-8 {
+                margin-bottom: 1.5rem;
+            }
+            
+            /* שיפור מובייל לכפתורי ניווט - סטייל אולטרה-מודרן 2025 */
+            .nav-buttons {
+                flex-direction: column;
+                gap: 1rem;
+                align-items: center;
+                padding: 1.25rem;
+                margin-top: 2rem;
+                border-top: none;
+                position: relative;
+            }
+            
+            /* מרכוז האינדיקטור ועיצוב מינימליסטי */
+            .nav-buttons .flex.items-center.text-gray-400 {
+                margin: 0 0 1.5rem;
+                order: -1;
+                padding: 0.5rem 1rem;
+                background-color: #f8fafc;
+                border-radius: 30px;
+                box-shadow: 0 2px 10px rgba(0,0,0,0.03);
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                width: auto;
+            }
+            
+            /* עיצוב מודרני לאינדיקטור */
+            .nav-buttons .flex.items-center.text-gray-400 span {
+                font-size: 0.875rem;
+                font-weight: 500;
+                color: #64748b;
+            }
+            
+            /* פס התקדמות דק ומעוצב */
+            .nav-buttons .flex.items-center.text-gray-400 .w-24 {
+                width: 60px;
+                height: 3px;
+                margin: 0 0.5rem;
+                background-color: #e2e8f0;
+                border-radius: 10px;
+                overflow: hidden;
+            }
+            
+            /* עיצוב מינימליסטי לכפתורים - סגנון 2025 */
+            .nav-button {
+                width: auto;
+                max-width: none;
+                justify-content: center;
+                padding: 0.5rem 1rem;
+                font-size: 0.875rem;
+                font-weight: 500;
+                border-radius: 30px;
+                border-width: 1px;
+                background: transparent;
+                box-shadow: none;
+                position: relative;
+                overflow: hidden;
+                margin: 0.25rem 0;
+                transition: all 0.2s ease;
+            }
+            
+            /* אפקט מודרני בלחיצה */
+            .nav-button:active {
+                transform: scale(0.95);
+                background-color: rgba(42, 175, 175, 0.05);
+            }
+            
+            /* אייקון החץ */
+            .nav-button i {
+                font-size: 0.875rem;
+                transition: transform 0.2s ease;
+            }
+            
+            /* סידור חדש של הכפתורים בשורה */
+            .nav-buttons {
+                flex-direction: row;
+                justify-content: space-between;
+                flex-wrap: wrap;
+                padding: 1rem 0;
+            }
+            
+            /* מיקום האינדיקטור מעל הכפתורים */
+            .nav-buttons .flex.items-center.text-gray-400 {
+                width: 100%;
+                justify-content: center;
+                margin-bottom: 1rem;
+            }
         }
 
         /* הוספת סגנון לחץ הגלילה למטה - 2025 מודרני */
@@ -499,6 +866,174 @@
             border-radius: 0.5rem;
             color: #1a202c;
             z-index: 1002;
+        }
+
+        /* סגנונות משופרים למודל תמונה ואפקטים במובייל */
+        #mobileInstructions {
+            transition: opacity 0.5s ease;
+        }
+        
+        #mobileInstructions.opacity-0 {
+            opacity: 0;
+        }
+        
+        .modal-content {
+            opacity: 0;
+            backface-visibility: hidden;
+            -webkit-backface-visibility: hidden;
+        }
+        
+        /* שיפור אינדיקטור טעינה */
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        .animate-spin {
+            animation: spin 1s linear infinite;
+        }
+        
+        .border-t-primary-color {
+            border-top-color: var(--primary-color);
+        }
+        
+        /* אנימציות משופרות למובייל */
+        @media (max-width: 768px) {
+            .fade-up {
+                opacity: 0;
+                transform: translateY(20px);
+                transition: opacity 0.5s ease, transform 0.5s ease;
+            }
+            
+            .fade-up.show {
+                opacity: 1;
+                transform: translateY(0);
+            }
+            
+            /* שיפור ביצועים ושמירת משאבים במובייל */
+            .card, .progress-step, .nav-button {
+                will-change: transform;
+            }
+            
+            .modalImage {
+                will-change: transform;
+            }
+            
+            /* שיפור מהירות טעינה ותצוגה במובייל */
+            img {
+                content-visibility: auto;
+            }
+            
+            /* שיפור אינטראקטיביות בלחיצה על לינקים ואובייקטים */
+            a, button, .card, .progress-step, .nav-button {
+                cursor: pointer;
+                -webkit-tap-highlight-color: transparent;
+            }
+
+            /* שיפור אינטראקטיביות מגע והגדלת שטח לחיצה */
+            .progress-step, .nav-button, .modal-close {
+                min-height: 44px;
+                min-width: 44px;
+            }
+        }
+        
+        /* אנימציות משופרות למובייל אף יותר קטן */
+        @media (max-width: 576px) {
+            /* הקטנת עלות העיבוד של אנימציות */
+            .card:hover, .progress-step:hover {
+                transform: none;
+                box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            }
+            
+            /* שיפור נראות המודל במובייל */
+            .modal-content {
+                padding: 1rem;
+            }
+            
+            .modal-close {
+                top: 0rem;
+                left: 0rem;
+                border-radius: 0 0 8px 0;
+            }
+            
+            #imageTitle {
+                top: 0rem;
+                right: 0rem;
+                border-radius: 0 0 0 8px;
+                padding: 0.25rem 0.5rem;
+                font-size: 11px;
+            }
+        }
+
+        /* התאמת הוראות המשתמש */
+        @media (max-width: 768px) {
+            /* מניעת גלישה אופקית */
+            html, body {
+                max-width: 100%;
+                overflow-x: hidden;
+            }
+            
+            .hidden {
+                display: none !important;
+            }
+            
+            .opacity-0 {
+                opacity: 0 !important;
+            }
+        }
+        
+        /* שיפורי ביצועים וחוויית משתמש אחרונים למובייל */
+        @media (max-width: 576px) {
+            /* הימנעות מאפקטים כבדים */
+            .card, .progress-step, .nav-button {
+                transition: transform 0.2s ease, box-shadow 0.2s ease !important;
+            }
+            
+            /* שיפור המרווחים והנגישות במובייל */
+            .nav-button {
+                min-width: 110px;
+                justify-content: center;
+            }
+            
+            .nav-button i {
+                margin: 0 6px;
+            }
+            
+            /* הגדלת שטח לחיצה */
+            .nav-buttons {
+                padding-top: 1rem;
+                margin-top: 2rem;
+            }
+            
+            /* הגדלת אזורי לחיצה בפרויקטים */
+            .bg-white.rounded-2xl h3, .bg-white.rounded-2xl h2 {
+                line-height: 1.4;
+            }
+        }
+        
+        @media (max-width: 350px) {
+            .card, .bg-white.rounded-2xl {
+                padding: 0.875rem !important;
+            }
+            
+            .document-header {
+                margin-bottom: 1rem;
+                padding-bottom: 1rem;
+            }
+            
+            .title-bar {
+                margin-bottom: 1rem;
+            }
+            
+            .nav-buttons {
+                margin-top: 1.5rem;
+            }
+            
+            /* יותר מקום לנוחות הלחיצה */
+            .nav-button {
+                padding: 0.625rem 1rem;
+                min-width: 90px;
+            }
         }
     </style>
 </head>
@@ -747,8 +1282,15 @@
         <div class="nav-buttons">
             <a href="solution.html" class="nav-button">
                 <i class="fas fa-arrow-right ml-2"></i>
-                לדף הפתרון
+                לדף הקודם
             </a>
+            
+            <div class="flex items-center text-gray-400">
+                <div class="w-24 h-1.5 bg-gray-200 rounded-full mx-2 overflow-hidden">
+                    <div class="bg-primary-color h-full w-full"></div>
+                </div>
+                <span class="text-sm font-semibold">4 / 4</span>
+            </div>
             
             <div></div> <!-- כפתור ימני ריק בדף האחרון -->
         </div>
@@ -760,176 +1302,51 @@
         </div>
     </div>
 
-    <!-- מודל תמונה -->
+    <!-- מודל תמונה משופר למובייל -->
     <div id="imageModal" class="modal-backdrop">
         <div class="modal-content image-modal">
             <div class="modal-close" onclick="closeModal('imageModal')">
                 <i class="fas fa-times"></i>
             </div>
             <h3 id="imageTitle" class="text-xl font-semibold mb-4 text-center"></h3>
-            <img id="modalImage" src="" alt="" class="max-w-[95vw] max-h-[85vh] object-contain rounded-lg">
+            
+            <!-- אינדיקטור טעינה -->
+            <div id="loadingIndicator" class="hidden absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2">
+                <div class="w-12 h-12 border-4 border-t-primary-color border-white border-opacity-30 rounded-full animate-spin"></div>
+            </div>
+            
+            <img id="modalImage" src="" alt="" class="max-w-[95vw] max-h-[85vh] object-contain rounded-lg transition-transform duration-300">
+            
+            <!-- הוראות שימוש במובייל -->
+            <div id="mobileInstructions" class="fixed bottom-4 left-1/2 transform -translate-x-1/2 bg-black bg-opacity-70 text-white text-xs px-3 py-2 rounded-full hidden">
+                <span>לחץ פעמיים להגדלה • החלק למטה לסגירה</span>
+            </div>
         </div>
     </div>
 
     <script>
         document.addEventListener('DOMContentLoaded', () => {
-            // טעינת הדף עם אנימציה
-            const mainContent = document.querySelector('.content-section');
-            mainContent.style.opacity = '0';
-            mainContent.style.transform = 'translateY(20px)';
-            
-            setTimeout(() => {
-                mainContent.style.transition = 'opacity 0.5s ease, transform 0.5s ease';
-                mainContent.style.opacity = '1';
-                mainContent.style.transform = 'translateY(0)';
-            }, 100);
-
-            // התנהגות חץ גלילה
-            const scrollIndicator = document.getElementById('scrollIndicator');
-            
-            // גלילה חלקה למטה בלחיצה על החץ
-            scrollIndicator.addEventListener('click', () => {
-                window.scrollBy({
-                    top: window.innerHeight,
-                    behavior: 'smooth'
-                });
+            const mainContent = document.querySelector('main');
+            mainContent.classList.add('page-transition');
+            requestAnimationFrame(() => {
+                mainContent.classList.add('visible');
             });
-            
-            // הסתרת החץ אחרי גלילה משמעותית
-            window.addEventListener('scroll', () => {
-                if (window.scrollY > window.innerHeight * 0.5) {
-                    scrollIndicator.style.opacity = '0';
-                    setTimeout(() => {
-                        scrollIndicator.style.display = 'none';
-                    }, 300);
+
+            // בדיקת רוחב המסך והצגת ההודעה במובייל
+            function checkMobileAndShowMessage() {
+                const mobileMessage = document.querySelector('.mobile-only-message');
+                if (window.innerWidth <= 768) {
+                    mobileMessage.style.display = 'flex';
                 } else {
-                    scrollIndicator.style.display = 'block';
-                    setTimeout(() => {
-                        scrollIndicator.style.opacity = '1';
-                    }, 10);
+                    mobileMessage.style.display = 'none';
                 }
-            });
-
-            // קוד לטיפול בבר התקדמות
-            function initProgressBar() {
-                // קבלת העמוד הנוכחי בצורה יותר מדויקת
-                let currentPath = window.location.pathname;
-                
-                // טיפול במקרה של נתיב עם תיקיות
-                let currentPage = currentPath.split('/').pop();
-                
-                // טיפול במקרה של URL ללא שם קובץ (לדוגמה: /)
-                if (!currentPage || currentPage === '') {
-                    currentPage = 'index.html';
-                }
-                
-                // המרה לאותיות קטנות למקרה שיש הבדלי אותיות
-                currentPage = currentPage.toLowerCase();
-                
-                // בדיקה לנתיב ריק או דף הבית
-                if (currentPage === '' || currentPath.endsWith('/')) {
-                    currentPage = 'index.html';
-                }
-                
-                console.log('Current page detected as:', currentPage);
-                
-                // מיפוי הדפים למספרי צעדים
-                const pageStepMap = {
-                    'index.html': 1,
-                    'problem.html': 2,
-                    'solution.html': 3,
-                    'abouttracer.html': 4
-                };
-                
-                // מיפוי הדפים לאחוזי התקדמות
-                const pageProgressMap = {
-                    'index.html': 0,
-                    'problem.html': 33,
-                    'solution.html': 67,
-                    'abouttracer.html': 100
-                };
-                
-                // זיהוי הצעד הנוכחי והאחוז
-                let currentStep = 1; // ברירת מחדל לדף הראשון
-                let progressPercentage = 0;
-                
-                // חיפוש לפי שם הקובץ
-                for (const page in pageStepMap) {
-                    if (currentPage.includes(page)) {
-                        currentStep = pageStepMap[page];
-                        progressPercentage = pageProgressMap[page];
-                        break;
-                    }
-                }
-                
-                console.log('Current step:', currentStep, 'Progress:', progressPercentage + '%');
-                
-                // איפוס כל הצעדים לפני הסימון מחדש
-                document.querySelectorAll('.progress-step').forEach(step => {
-                    step.classList.remove('active', 'completed');
-                });
-                
-                // עדכון סרגל ההתקדמות
-                const progressFill = document.getElementById('progressFill');
-                if (progressFill) {
-                    progressFill.style.width = `${progressPercentage}%`;
-                }
-                
-                // עדכון הצעדים
-                const steps = document.querySelectorAll('.progress-step');
-                steps.forEach(step => {
-                    const stepNumber = parseInt(step.getAttribute('data-step'));
-                    
-                    // סימון הצעד הנוכחי כפעיל
-                    if (stepNumber === currentStep) {
-                        step.classList.add('active');
-                    }
-                    
-                    // סימון הצעדים שהושלמו
-                    if (stepNumber < currentStep) {
-                        step.classList.add('completed');
-                    }
-                });
-                
-                // שמירת ההתקדמות ב-localStorage
-                let visitedPages = JSON.parse(localStorage.getItem('visitedPages')) || [];
-                const pageKey = Object.keys(pageStepMap).find(key => 
-                    pageStepMap[key] === currentStep);
-                
-                if (pageKey && !visitedPages.includes(pageKey)) {
-                    visitedPages.push(pageKey);
-                    localStorage.setItem('visitedPages', JSON.stringify(visitedPages));
-                }
-                
-                // סימון דפים שכבר ביקרנו בהם
-                visitedPages.forEach(page => {
-                    if (pageStepMap[page]) {
-                        const stepNumber = pageStepMap[page];
-                        const stepElement = document.querySelector(`.progress-step[data-step="${stepNumber}"]`);
-                        if (stepElement && !stepElement.classList.contains('active') && stepNumber !== currentStep) {
-                            stepElement.classList.add('completed');
-                        }
-                    }
-                });
-                
-                // הוספת אפקט לחיצה לצעדים
-                steps.forEach(step => {
-                    step.addEventListener('mousedown', () => {
-                        step.style.transform = 'translateY(-1px)';
-                    });
-                    
-                    step.addEventListener('mouseup', () => {
-                        step.style.transform = '';
-                    });
-                    
-                    step.addEventListener('mouseleave', () => {
-                        step.style.transform = '';
-                    });
-                });
             }
-            
-            // אתחול בר ההתקדמות
-            initProgressBar();
+
+            // בדיקה ראשונית
+            checkMobileAndShowMessage();
+
+            // בדיקה בכל שינוי גודל מסך
+            window.addEventListener('resize', checkMobileAndShowMessage);
         });
 
         function openImageModal(src, title) {
@@ -947,22 +1364,31 @@
 
         function closeModal(modalId) {
             const modal = document.getElementById(modalId);
+            const modalImage = document.getElementById('modalImage');
+            
+            // איפוס כל ההגדלות של התמונה
+            if (modalImage) {
+                modalImage.style.transform = 'scale(1)';
+            }
+            
             modal.classList.remove('show');
             modal.querySelector('.modal-content').classList.remove('show');
+            
+            // הסתרת המודל לאחר סיום האנימציה
             setTimeout(() => {
                 modal.style.display = 'none';
             }, 300);
         }
 
         // סגירת מודל בלחיצה מחוץ לתוכן
-        document.getElementById('imageModal').addEventListener('click', (e) => {
+        document.getElementById('imageModal').addEventListener('click', function(e) {
             if (e.target === e.currentTarget) {
                 closeModal('imageModal');
             }
         });
 
         // סגירת מודל בלחיצה על ESC
-        document.addEventListener('keydown', (e) => {
+        document.addEventListener('keydown', function(e) {
             if (e.key === 'Escape') {
                 const modal = document.getElementById('imageModal');
                 if (modal.style.display === 'block') {
