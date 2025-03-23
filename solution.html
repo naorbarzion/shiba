@@ -68,9 +68,9 @@
         .progress-line-fill {
             position: absolute;
             top: 0;
-            left: 0;
+            right: 0;
             height: 100%;
-            background: linear-gradient(to right, var(--primary-color), var(--secondary-color));
+            background: linear-gradient(to left, var(--primary-color), var(--secondary-color));
             width: 0%;
             transition: width 0.5s ease;
         }
@@ -825,7 +825,7 @@
         
         /* הוספת סגנון לחץ הגלילה למטה - 2025 מודרני - מעודכן */
         .scroll-down-indicator {
-            display: block; /* תמיד מוצג, נסתיר במדיה קוורי של מסכים גדולים */
+            display: flex; /* שינוי מ-block ל-flex */
             position: fixed;
             bottom: 30px;
             left: 50%;
@@ -841,7 +841,6 @@
             box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
             border-radius: 50px;
             transition: all 0.3s ease;
-            display: flex;
             align-items: center;
             justify-content: center;
             color: #ffffff;
@@ -931,6 +930,14 @@
                     <i class="fas fa-info-circle"></i>
                 </div>
                 <span class="step-text">אודות טרייסר</span>
+            </a>
+            
+            <a href="pricing.html" class="progress-step" data-step="5">
+                <div class="step-icon">
+                    <span class="step-number">5</span>
+                    <i class="fas fa-shekel-sign"></i>
+                </div>
+                <span class="step-text">הצעת מחיר</span>
             </a>
         </div>
     </header>
@@ -1373,7 +1380,7 @@
                 <div class="w-24 h-1.5 bg-gray-200 rounded-full mx-2 overflow-hidden">
                     <div class="bg-primary-color h-full w-3/4"></div>
                 </div>
-                <span class="text-sm font-semibold">3 / 4</span>
+                <span class="text-sm font-semibold">3 / 5</span>
             </div>
             
             <a href="abouttracer.html" class="nav-button">
@@ -1434,6 +1441,34 @@
 
             // בדיקה בכל שינוי גודל מסך
             window.addEventListener('resize', checkMobileAndShowMessage);
+
+            // התנהגות חץ גלילה
+            const scrollIndicator = document.getElementById('scrollIndicator');
+            
+            // גלילה חלקה למטה בלחיצה על החץ
+            if (scrollIndicator) {
+                scrollIndicator.addEventListener('click', () => {
+                    window.scrollBy({
+                        top: window.innerHeight,
+                        behavior: 'smooth'
+                    });
+                });
+                
+                // הסתרת החץ אחרי גלילה משמעותית
+                window.addEventListener('scroll', () => {
+                    if (window.scrollY > window.innerHeight * 0.5) {
+                        scrollIndicator.style.opacity = '0';
+                        setTimeout(() => {
+                            scrollIndicator.style.display = 'none';
+                        }, 300);
+                    } else {
+                        scrollIndicator.style.display = 'flex';
+                        setTimeout(() => {
+                            scrollIndicator.style.opacity = '1';
+                        }, 10);
+                    }
+                });
+            }
         });
 
         function openModal(modalId) {
@@ -1498,6 +1533,129 @@
                 });
             }
         });
+
+        // קוד לטיפול בבר התקדמות
+        function initProgressBar() {
+            // קבלת העמוד הנוכחי בצורה יותר מדויקת
+            let currentPath = window.location.pathname;
+            
+            // טיפול במקרה של נתיב עם תיקיות
+            let currentPage = currentPath.split('/').pop();
+            
+            // טיפול במקרה של URL ללא שם קובץ (לדוגמה: /)
+            if (!currentPage || currentPage === '') {
+                currentPage = 'index.html';
+            }
+            
+            // המרה לאותיות קטנות למקרה שיש הבדלי אותיות
+            currentPage = currentPage.toLowerCase();
+            
+            // בדיקה לנתיב ריק או דף הבית
+            if (currentPage === '' || currentPath.endsWith('/')) {
+                currentPage = 'index.html';
+            }
+            
+            console.log('Current page detected as:', currentPage);
+            
+            // מיפוי הדפים למספרי צעדים
+            const pageStepMap = {
+                'index.html': 1,
+                'problem.html': 2,
+                'solution.html': 3,
+                'abouttracer.html': 4,
+                'pricing.html': 5
+            };
+            
+            // מיפוי הדפים לאחוזי התקדמות
+            const pageProgressMap = {
+                'index.html': 20,
+                'problem.html': 40,
+                'solution.html': 60,
+                'abouttracer.html': 80,
+                'pricing.html': 100
+            };
+            
+            // זיהוי הצעד הנוכחי והאחוז
+            let currentStep = 1; // ברירת מחדל לדף הראשון
+            let progressPercentage = 20; // מתחילים ב-20% כברירת מחדל
+            
+            // חיפוש לפי שם הקובץ
+            for (const page in pageStepMap) {
+                if (currentPage.includes(page)) {
+                    currentStep = pageStepMap[page];
+                    progressPercentage = pageProgressMap[page];
+                    break;
+                }
+            }
+            
+            console.log('Current step:', currentStep, 'Progress:', progressPercentage + '%');
+            
+            // איפוס כל הצעדים לפני הסימון מחדש
+            document.querySelectorAll('.progress-step').forEach(step => {
+                step.classList.remove('active', 'completed');
+            });
+            
+            // עדכון סרגל ההתקדמות
+            const progressFill = document.getElementById('progressFill');
+            if (progressFill) {
+                progressFill.style.width = `${progressPercentage}%`;
+            }
+            
+            // עדכון הצעדים
+            const steps = document.querySelectorAll('.progress-step');
+            steps.forEach(step => {
+                const stepNumber = parseInt(step.getAttribute('data-step'));
+                
+                // סימון הצעד הנוכחי כפעיל
+                if (stepNumber === currentStep) {
+                    step.classList.add('active');
+                }
+                
+                // סימון הצעדים שהושלמו
+                if (stepNumber < currentStep) {
+                    step.classList.add('completed');
+                }
+            });
+            
+            // שמירת ההתקדמות ב-localStorage
+            let visitedPages = JSON.parse(localStorage.getItem('visitedPages')) || [];
+            const pageKey = Object.keys(pageStepMap).find(key => 
+                pageStepMap[key] === currentStep);
+            
+            if (pageKey && !visitedPages.includes(pageKey)) {
+                visitedPages.push(pageKey);
+                localStorage.setItem('visitedPages', JSON.stringify(visitedPages));
+            }
+            
+            // סימון דפים שכבר ביקרנו בהם
+            visitedPages.forEach(page => {
+                if (pageStepMap[page]) {
+                    const stepNumber = pageStepMap[page];
+                    const stepElement = document.querySelector(`.progress-step[data-step="${stepNumber}"]`);
+                    if (stepElement && !stepElement.classList.contains('active') && stepNumber !== currentStep) {
+                        stepElement.classList.add('completed');
+                    }
+                }
+            });
+            
+            // הוספת אפקט לחיצה לצעדים
+            steps.forEach(step => {
+                step.addEventListener('mousedown', () => {
+                    step.style.transform = 'translateY(-1px)';
+                });
+                
+                step.addEventListener('mouseup', () => {
+                    step.style.transform = '';
+                });
+                
+                step.addEventListener('mouseleave', () => {
+                    step.style.transform = '';
+                });
+            });
+        }
+        
+        // אתחול בר ההתקדמות
+        initProgressBar();
     </script>
 </body>
 </html> 

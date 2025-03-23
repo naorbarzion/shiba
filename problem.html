@@ -68,9 +68,9 @@
         .progress-line-fill {
             position: absolute;
             top: 0;
-            left: 0;
+            right: 0;
             height: 100%;
-            background: linear-gradient(to right, var(--primary-color), var(--secondary-color));
+            background: linear-gradient(to left, var(--primary-color), var(--secondary-color));
             width: 0%;
             transition: width 0.5s ease;
         }
@@ -422,7 +422,7 @@
 
         /* הוספת סגנון לחץ הגלילה למטה - 2025 מודרני */
         .scroll-down-indicator {
-            display: block; /* תמיד מוצג, נסתיר במדיה קוורי של מסכים גדולים */
+            display: flex; /* שינוי מ-block ל-flex */
             position: fixed;
             bottom: 30px;
             left: 50%;
@@ -438,7 +438,6 @@
             box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
             border-radius: 50px;
             transition: all 0.3s ease;
-            display: flex;
             align-items: center;
             justify-content: center;
             color: #ffffff;
@@ -529,6 +528,14 @@
                 </div>
                 <span class="step-text">אודות טרייסר</span>
             </a>
+            
+            <a href="pricing.html" class="progress-step" data-step="5">
+                <div class="step-icon">
+                    <span class="step-number">5</span>
+                    <i class="fas fa-shekel-sign"></i>
+                </div>
+                <span class="step-text">הצעת מחיר</span>
+            </a>
         </div>
     </header>
 
@@ -567,7 +574,7 @@
             </div>
             
             <div class="bg-gray-50 rounded-xl p-6 mb-8">
-                <p class="text-xl font-semibold text-gray-800">חוסר שליטה ובקרה על רכבים תפעוליים במתחם הפתוח</p>
+                <p class="text-xl font-semibold text-gray-800">חוסר שליטה ובקרה על כלים תפעוליים במתחם הפתוח</p>
             </div>
             
             <div class="card-container">
@@ -662,7 +669,7 @@
                 <div class="w-24 h-1.5 bg-gray-200 rounded-full mx-2 overflow-hidden">
                     <div class="bg-primary-color h-full w-2/4"></div>
                 </div>
-                <span class="text-sm font-semibold">2 / 4</span>
+                <span class="text-sm font-semibold">2 / 5</span>
             </div>
             
             <a href="solution.html" class="nav-button">
@@ -695,27 +702,29 @@
             const scrollIndicator = document.getElementById('scrollIndicator');
             
             // גלילה חלקה למטה בלחיצה על החץ
-            scrollIndicator.addEventListener('click', () => {
-                window.scrollBy({
-                    top: window.innerHeight,
-                    behavior: 'smooth'
+            if (scrollIndicator) {
+                scrollIndicator.addEventListener('click', () => {
+                    window.scrollBy({
+                        top: window.innerHeight,
+                        behavior: 'smooth'
+                    });
                 });
-            });
-            
-            // הסתרת החץ אחרי גלילה משמעותית
-            window.addEventListener('scroll', () => {
-                if (window.scrollY > window.innerHeight * 0.5) {
-                    scrollIndicator.style.opacity = '0';
-                    setTimeout(() => {
-                        scrollIndicator.style.display = 'none';
-                    }, 300);
-                } else {
-                    scrollIndicator.style.display = 'block';
-                    setTimeout(() => {
-                        scrollIndicator.style.opacity = '1';
-                    }, 10);
-                }
-            });
+                
+                // הסתרת החץ אחרי גלילה משמעותית
+                window.addEventListener('scroll', () => {
+                    if (window.scrollY > window.innerHeight * 0.5) {
+                        scrollIndicator.style.opacity = '0';
+                        setTimeout(() => {
+                            scrollIndicator.style.display = 'none';
+                        }, 300);
+                    } else {
+                        scrollIndicator.style.display = 'flex';
+                        setTimeout(() => {
+                            scrollIndicator.style.opacity = '1';
+                        }, 10);
+                    }
+                });
+            }
             
             // קוד לטיפול בבר התקדמות
             function initProgressBar() {
@@ -745,20 +754,22 @@
                     'index.html': 1,
                     'problem.html': 2,
                     'solution.html': 3,
-                    'abouttracer.html': 4
+                    'abouttracer.html': 4,
+                    'pricing.html': 5
                 };
                 
                 // מיפוי הדפים לאחוזי התקדמות
                 const pageProgressMap = {
-                    'index.html': 0,
-                    'problem.html': 33,
-                    'solution.html': 67,
-                    'abouttracer.html': 100
+                    'index.html': 20,
+                    'problem.html': 40,
+                    'solution.html': 60,
+                    'abouttracer.html': 80,
+                    'pricing.html': 100
                 };
                 
                 // זיהוי הצעד הנוכחי והאחוז
                 let currentStep = 1; // ברירת מחדל לדף הראשון
-                let progressPercentage = 0;
+                let progressPercentage = 20; // מתחילים ב-20% כברירת מחדל
                 
                 // חיפוש לפי שם הקובץ
                 for (const page in pageStepMap) {

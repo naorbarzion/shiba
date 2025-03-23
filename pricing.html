@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>סקירה כללית - פרויקט שיבא | טרייסר טכנולוגיות</title>
+    <title>הצעת מחיר - פרויקט שיבא | טרייסר טכנולוגיות</title>
     <link href="https://fonts.googleapis.com/css2?family=Rubik:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
     <script src="https://cdn.tailwindcss.com"></script>
@@ -252,12 +252,6 @@
             box-shadow: 0 4px 12px rgba(42, 175, 175, 0.2);
         }
         
-        .nav-button.disabled {
-            opacity: 0.5;
-            cursor: not-allowed;
-            pointer-events: none;
-        }
-        
         .card-container {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
@@ -272,6 +266,8 @@
             padding: 1.5rem;
             transition: all 0.3s ease;
             box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+            display: flex;
+            flex-direction: column;
         }
         
         .card:hover {
@@ -296,52 +292,118 @@
             color: var(--primary-color);
         }
         
-        .timeline {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 2rem;
-            margin-top: 2rem;
-        }
-        
-        .year-tag {
-            display: inline-block;
-            background-color: #f0f5ff;
-            color: var(--secondary-color);
-            padding: 0.25rem 1rem;
-            border-radius: 6px;
-            font-weight: 600;
-            margin-bottom: 1rem;
-        }
-        
         .content-section {
             margin-bottom: 2.5rem;
         }
         
-        .mobile-warning {
-            position: fixed;
-            inset: 0;
-            background-color: rgba(255, 255, 255, 0.98);
-            z-index: 100;
-            display: none;
+        .document-footer {
+            display: flex;
+            justify-content: space-between;
             align-items: center;
-            justify-content: center;
-            text-align: center;
+            margin-top: 4rem;
+            padding-top: 1.5rem;
+            border-top: 1px solid #e2e8f0;
+            font-size: 0.875rem;
+            color: #64748b;
         }
         
+        /* סגנון ספציפי לדף המחירים */
+        .pricing-plan {
+            border: 2px solid #e2e8f0;
+            border-radius: 16px;
+            padding: 2rem;
+            margin-bottom: 2rem;
+            transition: all 0.3s ease;
+            background-color: #ffffff;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+        }
+        
+        .pricing-plan:hover {
+            border-color: var(--primary-color);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            transform: translateY(-5px);
+        }
+        
+        .pricing-plan-header {
+            border-bottom: 1px solid #e2e8f0;
+            margin-bottom: 1.5rem;
+            padding-bottom: 1.5rem;
+        }
+        
+        .pricing-badge {
+            background-color: rgba(42, 175, 175, 0.1);
+            color: var(--primary-color);
+            padding: 0.5rem 1rem;
+            border-radius: 20px;
+            font-weight: 600;
+            font-size: 0.875rem;
+            display: inline-block;
+        }
+        
+        .pricing-cost {
+            font-size: 2.5rem;
+            font-weight: 700;
+            color: #1e293b;
+            margin: 1rem 0;
+        }
+        
+        .pricing-period {
+            color: #64748b;
+            font-size: 0.875rem;
+        }
+        
+        .pricing-details {
+            list-style: none;
+            margin: 1.5rem 0;
+        }
+        
+        .pricing-details li {
+            padding: 0.75rem 0;
+            border-bottom: 1px dashed #e2e8f0;
+            display: flex;
+            align-items: center;
+        }
+        
+        .pricing-details li:last-child {
+            border-bottom: none;
+        }
+        
+        .pricing-details i {
+            color: var(--primary-color);
+            margin-left: 0.75rem;
+        }
+        
+        .bank-details {
+            background-color: #f8fafc;
+            border-radius: 12px;
+            padding: 1.5rem;
+            margin-top: 2rem;
+        }
+        
+        .bank-details h3 {
+            margin-bottom: 1rem;
+            color: #1e293b;
+            font-weight: 600;
+        }
+        
+        .bank-details ul {
+            list-style: none;
+        }
+        
+        .bank-details li {
+            margin-bottom: 0.5rem;
+        }
+        
+        .highlight-box {
+            background-color: #fff8ed;
+            border-right: 4px solid var(--primary-color);
+            padding: 1rem;
+            margin: 1.5rem 0;
+            border-radius: 8px;
+        }
+        
+        /* התאמה למובייל */
         @media (max-width: 768px) {
-            .mobile-warning {
-                display: none;
-            }
-            
-            .timeline {
-                grid-template-columns: 1fr;
-            }
-            
-            .card-container.grid-cols-2, 
-            .card-container.grid-cols-3 {
-                grid-template-columns: 1fr;
-            }
-            
             .document-header {
                 flex-direction: column;
                 gap: 1.5rem;
@@ -349,18 +411,17 @@
             
             /* שיפור מובייל לכפתורי ניווט - סטייל אולטרה-מודרן 2025 */
             .nav-buttons {
-                flex-direction: column;
-                gap: 1rem;
-                align-items: center;
-                padding: 1.25rem;
-                margin-top: 2rem;
-                border-top: none;
-                position: relative;
+                flex-direction: row;
+                justify-content: space-between;
+                flex-wrap: wrap;
+                padding: 1rem 0;
             }
             
-            /* מרכוז האינדיקטור ועיצוב מינימליסטי */
+            /* מיקום האינדיקטור מעל הכפתורים */
             .nav-buttons .flex.items-center.text-gray-400 {
-                margin: 0 0 1.5rem;
+                width: 100%;
+                justify-content: center;
+                margin-bottom: 1rem;
                 order: -1;
                 padding: 0.5rem 1rem;
                 background-color: #f8fafc;
@@ -368,8 +429,6 @@
                 box-shadow: 0 2px 10px rgba(0,0,0,0.03);
                 display: flex;
                 align-items: center;
-                justify-content: center;
-                width: auto;
             }
             
             /* עיצוב מודרני לאינדיקטור */
@@ -418,50 +477,8 @@
                 font-size: 0.875rem;
                 transition: transform 0.2s ease;
             }
-            
-            /* סידור חדש של הכפתורים בשורה */
-            .nav-buttons {
-                flex-direction: row;
-                justify-content: space-between;
-                flex-wrap: wrap;
-                padding: 1rem 0;
-            }
-            
-            /* מיקום האינדיקטור מעל הכפתורים */
-            .nav-buttons .flex.items-center.text-gray-400 {
-                width: 100%;
-                justify-content: center;
-                margin-bottom: 1rem;
-            }
         }
         
-        .document-footer {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            margin-top: 4rem;
-            padding-top: 1.5rem;
-            border-top: 1px solid #e2e8f0;
-            font-size: 0.875rem;
-            color: #64748b;
-        }
-        
-        .progress-bar-container {
-            width: 100%;
-            height: 5px;
-            background-color: #e2e8f0;
-            border-radius: 3px;
-            margin: 2rem 0;
-            overflow: hidden;
-        }
-        
-        .progress-bar {
-            height: 100%;
-            background: linear-gradient(90deg, var(--primary-color), var(--secondary-color));
-            width: 25%;
-            transition: width 0.5s ease;
-        }
-
         /* הוספת סגנון לחץ הגלילה למטה - 2025 מודרני */
         .scroll-down-indicator {
             display: flex;
@@ -529,123 +546,9 @@
                 display: none;
             }
         }
-        
-        /* פופאפ למובייל */
-        .mobile-popup-overlay {
-            display: none;
-            position: fixed;
-            inset: 0;
-            background-color: rgba(0, 0, 0, 0.7);
-            backdrop-filter: blur(5px);
-            z-index: 2000;
-            opacity: 0;
-            transition: opacity 0.3s ease;
-        }
-        
-        .mobile-popup-overlay.show {
-            opacity: 1;
-        }
-        
-        .mobile-popup {
-            position: fixed;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            width: 90%;
-            max-width: 350px;
-            background: white;
-            border-radius: 16px;
-            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
-            padding: 1.5rem;
-            text-align: center;
-            z-index: 2001;
-            opacity: 0;
-            transform: translate(-50%, -40%);
-            transition: all 0.4s cubic-bezier(0.2, 0.9, 0.3, 1.1);
-        }
-        
-        .mobile-popup.show {
-            opacity: 1;
-            transform: translate(-50%, -50%);
-        }
-        
-        .mobile-popup-icon {
-            width: 64px;
-            height: 64px;
-            background-color: rgba(42, 175, 175, 0.1);
-            color: var(--primary-color);
-            margin: 0 auto 1rem;
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 2rem;
-        }
-        
-        .mobile-popup-title {
-            font-size: 1.25rem;
-            font-weight: 600;
-            color: #1a202c;
-            margin-bottom: 0.75rem;
-        }
-        
-        .mobile-popup-text {
-            font-size: 0.875rem;
-            color: #4a5568;
-            margin-bottom: 1.5rem;
-        }
-        
-        .mobile-popup-buttons {
-            display: flex;
-            gap: 1rem;
-        }
-        
-        .mobile-popup-button {
-            flex: 1;
-            padding: 0.75rem 1rem;
-            border-radius: 8px;
-            font-weight: 500;
-            font-size: 0.875rem;
-            transition: all 0.2s ease;
-            cursor: pointer;
-        }
-        
-        .mobile-popup-button-primary {
-            background-color: var(--primary-color);
-            color: white;
-            border: none;
-        }
-        
-        .mobile-popup-button-primary:hover {
-            background-color: #259595;
-        }
-        
-        .mobile-popup-button-secondary {
-            background-color: #f7fafc;
-            color: #4a5568;
-            border: 1px solid #e2e8f0;
-        }
-        
-        .mobile-popup-button-secondary:hover {
-            background-color: #edf2f7;
-        }
     </style>
 </head>
 <body>
-    <!-- פופאפ למובייל -->
-    <div class="mobile-popup-overlay" id="mobilePopup">
-        <div class="mobile-popup">
-            <div class="mobile-popup-icon">
-                <i class="fas fa-desktop"></i>
-            </div>
-            <div class="mobile-popup-title">מומלץ לצפות במחשב</div>
-            <div class="mobile-popup-text">האתר מותאם למובייל, אך לחוויה מיטבית מומלץ לצפות בו ממחשב נייח או נייד.</div>
-            <div class="mobile-popup-buttons">
-                <button class="mobile-popup-button mobile-popup-button-primary" id="continueMobile" style="width:100%">המשך במובייל</button>
-            </div>
-        </div>
-    </div>
-
     <!-- בר התקדמות -->
     <header class="progress-header">
         <div class="progress-container">
@@ -653,7 +556,7 @@
                 <div class="progress-line-fill" id="progressFill"></div>
             </div>
             
-            <a href="index.html" class="progress-step active" data-step="1">
+            <a href="index.html" class="progress-step" data-step="1">
                 <div class="step-icon">
                     <span class="step-number">1</span>
                     <i class="fas fa-home"></i>
@@ -685,7 +588,7 @@
                 <span class="step-text">אודות טרייסר</span>
             </a>
             
-            <a href="pricing.html" class="progress-step" data-step="5">
+            <a href="pricing.html" class="progress-step active" data-step="5">
                 <div class="step-icon">
                     <span class="step-number">5</span>
                     <i class="fas fa-shekel-sign"></i>
@@ -713,119 +616,98 @@
         </div>
 
         <div class="title-bar">
-            <h1 class="text-3xl sm:text-4xl font-bold text-gray-800">אבטחה וניהול כלים תפעוליים במרחב הפתוח</h1>
-            <p class="text-xl text-gray-600 mt-2"></p>
+            <h1 class="text-3xl sm:text-4xl font-bold text-gray-800">הצעת מחיר</h1>
+            <p class="text-xl text-gray-600 mt-2">עבור 50-100 יחידות</p>
         </div>
 
-        <!-- סקירה כללית -->
-        <div id="overview" class="content-section">
+        <!-- תוכן המחירים -->
+        <div class="content-section">
             <div class="flex items-start gap-4 mb-6">
                 <div class="bg-blue-50 p-3 rounded-xl">
-                    <i class="fas fa-city text-2xl text-blue-500"></i>
+                    <i class="fas fa-shekel-sign text-2xl text-blue-500"></i>
                 </div>
                 <div>
-                    <span class="inline-block bg-blue-50 text-blue-600 rounded-full px-3 py-1 text-sm">פרויקט חדשני</span>
-                    <h2 class="text-3xl font-bold text-gray-800 mt-2">מהפכת "עיר הבריאות" בשיבא</h2>
+                    <span class="inline-block bg-blue-50 text-blue-600 rounded-full px-3 py-1 text-sm">הצעה מיוחדת</span>
+                    <h2 class="text-3xl font-bold text-gray-800 mt-2">מסלולי תמחור</h2>
                 </div>
             </div>
             
-            <div class="bg-gray-50 rounded-xl p-6 mb-8">
-                <p class="text-gray-700 mb-4">המרכז הרפואי שיבא נמצא בעיצומה של מהפכה - הקמת "עיר הבריאות". במסגרת החזון, המרכז הרפואי יהפוך לאזור נרחב המוקדש לפיתוח וקידום בריאות, כשבמרכזו עומד בית החולים שיבא. כחלק מהתוכנית, הגדרות יוסרו וכל הולכי הרגל מהשכונות החדשות והקו הסגול של הרכבת הקלה יוכלו להיכנס ולהתהלך באופן חופשי, כשהבידוק הביטחוני יתבצע רק בכניסה לבניינים.</p>
-                <p class="text-gray-700">המעבר למתחם פתוח, לצד הקמת 35 אלף יחידות דיור בסביבה, מייצר אתגרים תפעוליים משמעותיים בתחום ניהול ובקרת הכלים התפעוליים המשמשים לתנועה במתחם. פרויקט זה נועד לתת מענה מקיף לאתגרים אלו.</p>
-            </div>
-
-            <div class="content-section">
-                <h3 class="text-2xl font-bold text-gray-800 mb-6">בונים את עיר הבריאות של המחר</h3>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-8">
+                <!-- מסלול סטנדרטי -->
+                <div class="pricing-plan">
+                    <div class="pricing-plan-header">
+                        <span class="pricing-badge">מסלול התחייבות 24 חודשים</span>
+                        <h3 class="text-2xl font-bold mt-2">המסלול המומלץ - חיסכון של 17% בעלות המנוי החודשי</h3>
+                        <div class="pricing-cost">₪49</div>
+                        <div class="pricing-period">למנוי חודשי + מע"מ (18%)</div>
+                    </div>
+                    
+                    <ul class="pricing-details">
+                        <li><i class="fas fa-check"></i>פיילוט 30 יום ללא עלות</li>
+                        <li><i class="fas fa-check"></i>התחייבות 24 חודשים</li>
+                        <li><i class="fas fa-check"></i>תמיכה טכנית מורחבת</li>
+                        <li><i class="fas fa-check"></i>עדכוני מערכת</li>
+                        <li><i class="fas fa-check"></i>זמני אספקה: עד 14 ימי עסקים</li>
+                    </ul>
+                </div>
                 
-                <div class="timeline">
-                    <!-- 2023 Section -->
-                    <div>
-                        <div class="year-tag">2023</div>
-                        <div class="space-y-4">
-                            <div class="card">
-                                <div class="icon-box">
-                                    <i class="fas fa-door-open"></i>
-                                </div>
-                                <h4 class="text-lg font-semibold mb-2 text-gray-800">פתיחת המעבר המזרחי</h4>
-                                <p class="text-gray-600 text-sm">במיקום חדש</p>
-                            </div>
-                            
-                            <div class="card">
-                                <div class="icon-box">
-                                    <i class="fas fa-baby"></i>
-                                </div>
-                                <h4 class="text-lg font-semibold mb-2 text-gray-800">שיפוץ היחידה</h4>
-                                <p class="text-gray-600 text-sm">להפריה חוץ-גופית (IVF)</p>
-                            </div>
-                            
-                            <div class="card">
-                                <div class="icon-box">
-                                    <i class="fas fa-procedures"></i>
-                                </div>
-                                <h4 class="text-lg font-semibold mb-2 text-gray-800">מחלקת טיפול</h4>
-                                <p class="text-gray-600 text-sm">נמרץ כללי</p>
-                            </div>
+                <!-- מסלול גמיש -->
+                <div class="pricing-plan">
+                    <div class="pricing-plan-header">
+                        <span class="pricing-badge">מסלול גמיש</span>
+                        <h3 class="text-2xl font-bold mt-2">ללא התחייבות</h3>
+                        <div class="pricing-cost">₪199</div>
+                        <div class="pricing-period">לכל יחידה + מע"מ</div>
+                        <div class="pricing-period font-semibold mt-2 text-base">+ מנוי חודשי: 59 ₪ + מע"מ</div>
+                    </div>
+                    
+                    <ul class="pricing-details">
+                        <li><i class="fas fa-check"></i>גמישות בכמות היחידות</li>
+                        <li><i class="fas fa-check"></i>תמיכה טכנית מורחבת</li>
+                        <li><i class="fas fa-check"></i>עדכוני מערכת</li>
+                        <li><i class="fas fa-check"></i>זמני אספקה: עד 14 ימי עסקים</li>
+                    </ul>
+                </div>
+            </div>
+            
+            <!-- תנאי תשלום וזמני אספקה -->
+            <div class="mt-12">
+                <h3 class="text-2xl font-bold text-gray-800 mb-4">תנאי תשלום וזמני אספקה</h3>
+                
+                <div class="bg-white rounded-xl p-6 border-2 border-gray-100 shadow-sm">
+                    <div class="flex items-start gap-4 mb-4">
+                        <div class="bg-blue-50 p-3 rounded-xl">
+                            <i class="fas fa-university text-xl text-blue-500"></i>
+                        </div>
+                        <div>
+                            <h4 class="text-xl font-semibold text-gray-800">הוראת קבע בנקאית</h4>
+                            <p class="text-gray-600 mt-2">התשלום יתבצע באמצעות הוראת קבע בנקאית חודשית. התשלום הראשון יחויב עם הפעלת המערכת. יינתנו 30 יום פיילוט ללא עלות במערכת.</p>
                         </div>
                     </div>
                     
-                    <!-- 2024 Section -->
-                    <div>
-                        <div class="year-tag">2024</div>
-                        <div class="space-y-4">
-                            <div class="card">
-                                <div class="icon-box">
-                                    <i class="fas fa-heartbeat"></i>
-                                </div>
-                                <h4 class="text-lg font-semibold mb-2 text-gray-800">אגף קרדיו-סקולרי</h4>
-                                <p class="text-gray-600 text-sm">חדש ומתקדם</p>
-                            </div>
-                            
-                            <div class="card">
-                                <div class="icon-box">
-                                    <i class="fas fa-radiation-alt"></i>
-                                </div>
-                                <h4 class="text-lg font-semibold mb-2 text-gray-800">המכון לרפואה</h4>
-                                <p class="text-gray-600 text-sm">גרעינית ומולקולרית</p>
-                            </div>
-                            
-                            <div class="card">
-                                <div class="icon-box">
-                                    <i class="fas fa-vr-cardboard"></i>
-                                </div>
-                                <h4 class="text-lg font-semibold mb-2 text-gray-800">המרכז הארצי</h4>
-                                <p class="text-gray-600 text-sm">לסימולציה רפואית</p>
-                            </div>
+                    <div class="flex items-start gap-4 mb-4 mt-6">
+                        <div class="bg-blue-50 p-3 rounded-xl">
+                            <i class="fas fa-truck-fast text-xl text-blue-500"></i>
+                        </div>
+                        <div>
+                            <h4 class="text-xl font-semibold text-gray-800">זמני אספקה</h4>
+                            <p class="text-gray-600 mt-2">עד 14 ימי עסקים מיום אישור ההזמנה</p>
                         </div>
                     </div>
                     
-                    <!-- 2025-2029 Section -->
-                    <div>
-                        <div class="year-tag">2025-2029</div>
-                        <div class="space-y-4">
-                            <div class="card">
-                                <div class="icon-box">
-                                    <i class="fas fa-ribbon"></i>
-                                </div>
-                                <h4 class="text-lg font-semibold mb-2 text-gray-800">הרחבת מרכז הסרטן</h4>
-                                <p class="text-gray-600 text-sm">מרכז מתקדם</p>
-                            </div>
-                            
-                            <div class="card">
-                                <div class="icon-box">
-                                    <i class="fas fa-shield-alt"></i>
-                                </div>
-                                <h4 class="text-lg font-semibold mb-2 text-gray-800">סוויטה ומכון נפרולוגיה</h4>
-                                <p class="text-gray-600 text-sm">ממוגנים</p>
-                            </div>
-                            
-                            <div class="card">
-                                <div class="icon-box">
-                                    <i class="fas fa-child"></i>
-                                </div>
-                                <h4 class="text-lg font-semibold mb-2 text-gray-800">בית חולים ספרא</h4>
-                                <p class="text-gray-600 text-sm">לילדים</p>
-                            </div>
-                        </div>
+                    <div class="mt-6 bg-gray-50 p-4 rounded-lg border-r-4 border-primary-color">
+                        <h5 class="font-semibold text-gray-800 mb-2">פרטי חשבון להוראת קבע:</h5>
+                        <ul class="space-y-2 text-gray-700">
+                            <li class="flex items-center"><i class="fas fa-check-circle text-primary-color ml-2"></i><strong>בנק:</strong> <span class="mr-2">הפועלים (12)</span></li>
+                            <li class="flex items-center"><i class="fas fa-check-circle text-primary-color ml-2"></i><strong>סניף:</strong> <span class="mr-2">729</span></li>
+                            <li class="flex items-center"><i class="fas fa-check-circle text-primary-color ml-2"></i><strong>מספר חשבון:</strong> <span class="mr-2">54332</span></li>
+                            <li class="flex items-center"><i class="fas fa-check-circle text-primary-color ml-2"></i><strong>שם המוטב:</strong> <span class="mr-2">טרייסר טכנולוגיות בע"מ</span></li>
+                            <li class="flex items-center">
+                                <i class="fas fa-check-circle text-primary-color ml-2"></i>
+                                <strong>קוד מוסד:</strong> 
+                                <span class="mr-2 bg-primary-color bg-opacity-10 px-3 py-1 rounded-md font-bold text-primary-color border border-primary-color border-opacity-30">01658</span>
+                            </li>
+                        </ul>
                     </div>
                 </div>
             </div>
@@ -833,17 +715,17 @@
 
         <!-- כפתורי ניווט -->
         <div class="nav-buttons">
+            <a href="abouttracer.html" class="nav-button">
+                <i class="fas fa-arrow-right ml-2"></i>
+                לדף הקודם
+            </a>
+            
             <div class="flex items-center text-gray-400">
-                <span class="text-sm font-semibold">1 / 4</span>
+                <span class="text-sm font-semibold">5 / 5</span>
                 <div class="w-24 h-1.5 bg-gray-200 rounded-full mx-2 overflow-hidden">
-                    <div class="bg-primary-color h-full w-1/4"></div>
+                    <div class="bg-primary-color h-full w-full"></div>
                 </div>
             </div>
-            
-            <a href="problem.html" class="nav-button">
-                לדף הבא
-                <i class="fas fa-arrow-left mr-2"></i>
-            </a>
         </div>
 
         <!-- פוטר המסמך -->
@@ -865,67 +747,6 @@
                 mainContent.style.opacity = '1';
                 mainContent.style.transform = 'translateY(0)';
             }, 100);
-
-            // זיהוי מכשיר מובייל והצגת פופאפ
-            function isMobileDevice() {
-                return (window.innerWidth <= 768) || 
-                       (navigator.userAgent.match(/Android/i) || 
-                        navigator.userAgent.match(/webOS/i) || 
-                        navigator.userAgent.match(/iPhone/i) || 
-                        navigator.userAgent.match(/iPad/i) || 
-                        navigator.userAgent.match(/iPod/i) || 
-                        navigator.userAgent.match(/BlackBerry/i) || 
-                        navigator.userAgent.match(/Windows Phone/i));
-            }
-            
-            // פתיחת פופאפ מובייל
-            function showMobilePopup() {
-                // מציג את הפופאפ תמיד, ללא בדיקת עוגייה
-                const popup = document.getElementById('mobilePopup');
-                const popupContent = popup.querySelector('.mobile-popup');
-                
-                popup.style.display = 'block';
-                setTimeout(() => {
-                    popup.classList.add('show');
-                    popupContent.classList.add('show');
-                }, 100);
-                
-                // הגדרת כפתור "המשך במובייל"
-                document.getElementById('continueMobile').addEventListener('click', () => {
-                    popup.classList.remove('show');
-                    popupContent.classList.remove('show');
-                    setTimeout(() => {
-                        popup.style.display = 'none';
-                    }, 300);
-                    
-                    // הוסרה שמירת העוגייה כדי שהפופאפ יוצג בכל פעם
-                });
-            }
-            
-            // פונקציה לשמירת עוגייה (לא בשימוש כעת, אך נשארת למקרה שנרצה להחזיר אותה)
-            function setCookie(name, value, days) {
-                const expires = new Date();
-                expires.setTime(expires.getTime() + (days * 24 * 60 * 60 * 1000));
-                document.cookie = name + '=' + value + ';expires=' + expires.toUTCString() + ';path=/';
-            }
-            
-            // פונקציה לקריאת עוגייה (לא בשימוש כעת, אך נשארת למקרה שנרצה להחזיר אותה)
-            function getCookie(name) {
-                const nameEQ = name + '=';
-                const ca = document.cookie.split(';');
-                for (let i = 0; i < ca.length; i++) {
-                    let c = ca[i];
-                    while (c.charAt(0) === ' ') c = c.substring(1, c.length);
-                    if (c.indexOf(nameEQ) === 0) return c.substring(nameEQ.length, c.length);
-                }
-                return null;
-            }
-            
-            // בדיקת מכשיר והצגת פופאפ אם זה מובייל
-            if (isMobileDevice()) {
-                // דחיית הצגת הפופאפ ב-1.5 שניות לטעינת הדף
-                setTimeout(showMobilePopup, 1500);
-            }
 
             // התנהגות חץ גלילה
             const scrollIndicator = document.getElementById('scrollIndicator');
@@ -955,7 +776,7 @@
                 });
             }
             
-            // קוד משופר לטיפול בבר התקדמות
+            // קוד לטיפול בבר התקדמות
             function initProgressBar() {
                 // קבלת העמוד הנוכחי בצורה יותר מדויקת
                 let currentPath = window.location.pathname;
@@ -1080,4 +901,4 @@
         });
     </script>
 </body>
-</html> 
+</html>
